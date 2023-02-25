@@ -11,9 +11,10 @@ RUN apt-get update \
     unzip \
     tini \
   \
-  && if [ "$TARGETARCH" = "arm64" ]; then TARGETARCH="aarch64"; fi \
+  && SNELL_ARCH=$(arch) \
+  && if [ "$SNELL_ARCH" = "x86_64" ]; then SNELL_ARCH="amd64"; fi \
   \
-  && wget -O snell-server.zip https://dl.nssurge.com/snell/snell-server-v$VERSION-$TARGETOS-$TARGETARCH.zip \
+  && wget -O snell-server.zip https://dl.nssurge.com/snell/snell-server-v$VERSION-$TARGETOS-$SNELL_ARCH.zip \
   && unzip snell-server.zip \
   && mv snell-server /usr/local/bin \
   && rm -rf snell-server.zip \
