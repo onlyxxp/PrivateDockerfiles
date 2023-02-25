@@ -29,6 +29,6 @@ jobs:
           cd snell
           IMAGE_VERSION=`cat Dockerfile| grep "ARG VERSION" | awk -F '=' '{print $2}'`
           echo $DOCKER_TOKEN | docker login -u metowolf --password-stdin
-          docker buildx build --platform linux/amd64 -t metowolf/snell:$IMAGE_VERSION --squash --push .
+          docker buildx build --platform linux/amd64,linux/arm64 -t metowolf/snell:$IMAGE_VERSION --squash --push .
           echo $GITHUB_TOKEN | docker login ghcr.io -u metowolf --password-stdin
-          docker buildx build --platform linux/amd64 -t ghcr.io/metowolf/snell:$IMAGE_VERSION --squash --push .
+          docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/metowolf/snell:$IMAGE_VERSION --squash --push .
