@@ -48,7 +48,7 @@ RUN set -eux; \
 			downloadUrl="https://github.com/Tencent/TencentKona-11/releases/download/kona${JAVA_VERSION}/TencentKona-${JAVA_VERSION}.b1-jdk_linux-x86_64.tar.gz"; \
 			;; \
 		'arm64') \
-			downloadUrl='https://github.com/Tencent/TencentKona-11/releases/download/kona${JAVA_VERSION}/TencentKona-${JAVA_VERSION}.b1-jdk_linux-aarch64.tar.gz'; \
+			downloadUrl="https://github.com/Tencent/TencentKona-11/releases/download/kona${JAVA_VERSION}/TencentKona-${JAVA_VERSION}.b1-jdk_linux-aarch64.tar.gz"; \
 			;; \
 		*) echo >&2 "error: unsupported architecture: '$arch'"; exit 1 ;; \
 	esac; \
