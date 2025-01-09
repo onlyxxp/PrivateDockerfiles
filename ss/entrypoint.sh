@@ -14,12 +14,12 @@ snell-server -c /etc/snell/snell-server.conf&
 
 
 echo '{
-    "server":'"$SS_SERVER"',
-    "server_port": '"$SS_SERVER_PORT"',
-    "mode":"'"$SS_MOD"'",
+    "server":'"$SERVER"',
+    "server_port": '"$SERVER_PORT"',
+    "mode":"'"$MOD"'",
     "password": "'"$PASSWORD"'",
-    "timeout": '"$SS_TIMEOUT"',
-    "method": "'"$SS_METHOD"'",
+    "timeout": '"$TIMEOUT"',
+    "method": "'"$METHOD"'",
     "plugin" : "'"$PLUGIN"'",
     "plugin_opts" : "'"$PLUGIN_OPTS"'"
 }' > /etc/shadowsocks-rust/config.json
