@@ -41,6 +41,7 @@ RUN apt-get remove -y \
   && rm -rf /var/lib/apt/lists/*
 
 COPY config.json /etc/shadowsocks-rust/
+COPY start_apps.sh  /etc/
 
 # 添加默认环境变量
 ENV SERVER_ADDR 0.0.0.0
