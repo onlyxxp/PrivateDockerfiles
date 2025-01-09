@@ -40,8 +40,6 @@ ENV PSK=uYQwNqZbaIOMiZ6Zni8v5x0M09Y8bSK \
     LISTEN=0.0.0.0:9000
 
 ################ss ###############
-
-
 RUN apt-get update \
   && apt-get install -y \
     xz-utils \
@@ -80,7 +78,16 @@ COPY config.json /etc/shadowsocks-rust/
 COPY entrypoint.sh  /
 RUN chmod +x /entrypoint.sh
 
+# 添加默认环境变量
+ENV SS_LISTEN=8388 \
+    SS_PWD=12aa.345g \
+    SS_METHOD=aes-256-gcm \
+    SS_MOD=tcp_and_udp \ 
+    SS_TIMEOUT=600
+################ss ###############
 
-# 更新入口脚本，支持环境变量
+
+
 CMD [ "ssserver", "--log-without-time", "-a", "nobody", "-c", "/etc/shadowsocks-rust/config.json" ]
+# 更新入口脚本，支持环境变量
 ENTRYPOINT [ "dumb-init", "--", "/entrypoint.sh" ]
