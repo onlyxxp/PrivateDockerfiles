@@ -81,8 +81,8 @@ COPY --from=builder /usr/bin/v2ray-plugin /usr/bin/
 
 COPY snell-server.conf /etc/snell/snell-server.conf
 COPY config.json /etc/shadowsocks-rust/
-COPY entrypoint.sh  /
-RUN chmod +x /entrypoint.sh
+COPY entrypoint.sh  /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
 
 
 # 添加默认环境变量
@@ -98,6 +98,6 @@ ENV SS_LISTEN=8388 \
 
 
 
-ENTRYPOINT ["/entrypoint.sh" ]
+ENTRYPOINT ["entrypoint.sh" ]
 CMD [ "ssserver", "--log-without-time", "-a", "nobody", "-c", "/etc/shadowsocks-rust/config.json" ]
 # 更新入口脚本，支持环境变量
