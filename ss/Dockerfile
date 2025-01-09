@@ -1,5 +1,5 @@
-FROM alpine:3.21
-#FROM debian:bullseye-slim
+#FROM alpine:3.21
+FROM debian:bullseye-slim
 #FROM --platform=$BUILDPLATFORM rust:alpine3.20 AS builder
 LABEL maintainer="metowolf <i@i-meto.com>"
 
@@ -23,7 +23,7 @@ RUN apt-get update \
      esac \
   \
   && wget -O shadowsocks.zip https://github.com/shadowsocks/shadowsocks-rust/releases/download/v$VERSION/shadowsocks-v$VERSION.$SNELL_ARCH-unknown-linux-gnu.tar.xz \
-  && tar xvf shadowsocks.zip \
+  && tar -xzC shadowsocks.zip \
   && mv ssserver /usr/local/bin/  \
   && rm -rf shadowsocks.zip  \
   && ssserver --help 
@@ -31,7 +31,7 @@ RUN apt-get update \
 RUN cd /tmp && \
     TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/v2ray-plugin/releases/latest | grep tag_name | cut -d '"' -f4) && \
     wget https://github.com/shadowsocks/v2ray-plugin/releases/download/$TAG/v2ray-plugin-linux-amd64-$TAG.tar.gz && \
-    tar -xf *.gz && \
+    tar -xzC *.gz && \
     rm *.gz && \
     mv v2ray* /usr/bin/v2ray-plugin && \
     chmod +x /usr/bin/v2ray-plugin  && \
