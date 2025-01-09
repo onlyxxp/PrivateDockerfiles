@@ -44,17 +44,8 @@ RUN apt-get remove -y \
 
 COPY config.json /etc/shadowsocks-rust/
 COPY entrypoint.sh  /
-
 RUN chmod +x /entrypoint.sh
 
-# 添加默认环境变量
-ENV SERVER_ADDR 0.0.0.0
-ENV SERVER_PORT 1080
-ENV PASSWORD    password
-ENV METHOD      aes-128-gcm
-ENV OBFS_PLUGIN v2ray-plugin
-ENV OBFS_OPTS   server
-ENV ARGS=
 
 # 更新入口脚本，支持环境变量
 CMD [ "ssserver", "--log-without-time", "-a", "nobody", "-c", "/etc/shadowsocks-rust/config.json" ]
