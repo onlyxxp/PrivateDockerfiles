@@ -6,13 +6,8 @@ LABEL maintainer="123123123" \
 
 ARG TARGETOS
 ARG TARGETARCH
-ARG SS_VERSION=1.22.0
-ARG VERSION=1.3.2
+ARG VERSION=1.22.0
 
-
-
-
-ENV HOST        mydomain.me
 
 ENV SERVER_ADDR 0.0.0.0
 ENV SERVER_PORT 1080
@@ -21,8 +16,6 @@ ENV METHOD      aes-128-gcm
 ENV OBFS_PLUGIN v2ray-plugin
 ENV OBFS_OPTS   server
 ENV ARGS=
-
-USER root
 
 RUN apt-get update \
   && apt-get install -y \
@@ -37,7 +30,7 @@ RUN apt-get update \
        *) echo "Unsupported architecture: $TARGETARCH" && exit 1 ;; \
      esac \
   \
-  && wget -O shadowsocks.tar.xz https://github.com/shadowsocks/shadowsocks-rust/releases/download/v$SS_VERSION/shadowsocks-v$SS_VERSION.x86_64-unknown-linux-gnu.tar.xz \
+  && wget -O shadowsocks.tar.xz https://github.com/shadowsocks/shadowsocks-rust/releases/download/v$VERSION/shadowsocks-v$VERSION.x86_64-unknown-linux-gnu.tar.xz \
   && tar xvzf shadowsocks.tar.xz -C /root \
   &&  mv /root/ssserver /usr/local/bin/ssserver \
   && rm -rf shadowsocks.tar.xz \
