@@ -43,7 +43,7 @@ RUN apt-get remove -y \
   && rm -rf /var/lib/apt/lists/*
 
 COPY config.json /etc/shadowsocks-rust/
-COPY start_apps.sh  /etc/
+COPY start_apps.sh  /usr/bin/
 
 # 添加默认环境变量
 ENV SERVER_ADDR 0.0.0.0
@@ -54,5 +54,6 @@ ENV OBFS_PLUGIN v2ray-plugin
 ENV OBFS_OPTS   server
 ENV ARGS=
 
+ENTRYPOINT [ "start_apps.sh" ]
 # 更新入口脚本，支持环境变量
 CMD [ "ssserver", "--log-without-time", "-a", "nobody", "-c", "/etc/shadowsocks-rust/config.json" ]
