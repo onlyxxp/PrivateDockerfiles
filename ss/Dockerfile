@@ -1,12 +1,8 @@
 #FROM alpine:3.21
 #FROM debian:bullseye-slim AS builder
-FROM --platform=$BUILDPLATFORM rust:alpine3.20 AS builder
-RUN set -x \
-    && apk add --no-cache wget unzip dumb-init tar xz
+# FROM --platform=$BUILDPLATFORM rust:alpine3.20 AS builder
+FROM --platform=$BUILDPLATFORM debian:bullseye-slim AS builder
 
-RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
-     && wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.35-r1/glibc-2.35-r1.apk \
-     && apk add glibc-2.35-r1.apk 
 
 LABEL maintainer="metowolf <i@i-meto.com>"
 
@@ -19,7 +15,13 @@ ARG SNELL_VERSION=4.1.1
 
 
 ################snell ###############
-RUN case "$TARGETARCH" in \
+RUN apt-get update \
+  && apt-get install -y \
+    wget \
+    unzip \
+    dumb-init \
+  \
+  && case "$TARGETARCH" in \
        "amd64") SNELL_ARCH="amd64" ;; \
        "arm64") SNELL_ARCH="aarch64" ;; \
        *) echo "Unsupported architecture: $TARGETARCH" && exit 1 ;; \
@@ -32,7 +34,15 @@ RUN case "$TARGETARCH" in \
 RUN /usr/bin/snell-server --help
 
 ################ss ###############
-RUN case "$TARGETARCH" in \
+RUN apt-get update \
+  && apt-get install -y \
+    xz-utils \
+    tar \
+    wget \
+    unzip \
+    dumb-init \
+  \
+  && case "$TARGETARCH" in \
        "amd64") SNELL_ARCH="x86_64" ;; \
        "arm64") SNELL_ARCH="aarch64" ;; \
        *) echo "Unsupported architecture: $TARGETARCH" && exit 1 ;; \
@@ -56,7 +66,7 @@ RUN cd /tmp && \
 ################ss ###############
 
 
-FROM alpine:3.21 AS ss-server-v2ray
+FROM debian:bullseye-slim AS ss-server-v2ray
 COPY --from=builder /usr/bin/snell-server /usr/bin/
 COPY snell-server.conf /etc/snell/snell-server.conf
 RUN ls /usr/bin/s*
