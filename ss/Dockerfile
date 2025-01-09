@@ -10,36 +10,7 @@ ARG SNELL_VERSION=4.1.1
 ARG PLUGIN_VERSION=1.3.2
 
 
-################snell ###############
-COPY snell-server.conf /etc/snell/snell-server.conf
-RUN apt-get update \
-  && apt-get install -y \
-    wget \
-    unzip \
-    dumb-init \
-  \
-  && case "$TARGETARCH" in \
-       "amd64") SNELL_ARCH="amd64" ;; \
-       "arm64") SNELL_ARCH="aarch64" ;; \
-       *) echo "Unsupported architecture: $TARGETARCH" && exit 1 ;; \
-     esac \
-  \
-  && wget -O snell-server.zip https://dl.nssurge.com/snell/snell-server-v$SNELL_VERSION-$TARGETOS-$SNELL_ARCH.zip \
-  && unzip snell-server.zip \
-  && mv snell-server /usr/local/bin \
-  && rm -rf snell-server.zip \
-  && snell-server --help \
-  \
-  && apt-get remove -y \
-    wget \
-    unzip \
-  && rm -rf /var/lib/apt/lists/*
 
-# 添加默认环境变量
-ENV PSK=uYQwNqZbaIOMiZ6Zni8v5x0M09Y8bSK \
-    LISTEN=0.0.0.0:9000
-
-################ss ###############
 RUN apt-get update \
   && apt-get install -y \
     xz-utils \
