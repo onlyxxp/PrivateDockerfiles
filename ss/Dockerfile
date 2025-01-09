@@ -37,16 +37,11 @@ RUN apt-get update \
        *) echo "Unsupported architecture: $TARGETARCH" && exit 1 ;; \
      esac \
   \
-  && wget -O shadowsocks.tar.xz https://github.com/shadowsocks/shadowsocks-rust/releases/download/v$SS_VERSION/shadowsocks-v$SS_VERSION.$ARCH-$TARGETOS.tar.xz \
+  && wget -O shadowsocks.tar.xz https://github.com/shadowsocks/shadowsocks-rust/releases/download/v$SS_VERSION/shadowsocks-v$SS_VERSION.$ARCH-$TARGET-unknown-linux-gnu.tar.xz \
   && tar xvzf shadowsocks.tar.xz -C /root \
   &&  mv /root/ssserver /usr/local/bin/ssserver \
   && rm -rf shadowsocks.tar.xz \
   && ssserver --help \
-  && wget -O v2ray-plugin.tar.gz https://github.com/shadowsocks/v2ray-plugin/releases/download/v$VERSION/v2ray-plugin-$TARGETOS-$ARCH-v$VERSION.tar.gz \
-  && tar xvzf v2ray-plugin.tar.gz -C /root \
-  &&  mv /root/v2ray-plugin_linux_$ARCH /usr/local/bin/v2ray-plugin \
-  && rm -rf v2ray-plugin.tar.gz \
-  && v2ray-plugin --help \
   \
   && apt-get remove -y \
     wget \
