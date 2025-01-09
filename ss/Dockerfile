@@ -1,4 +1,5 @@
-FROM debian:bullseye-slim
+FROM alpine:3.21
+#FROM debian:bullseye-slim
 #FROM --platform=$BUILDPLATFORM rust:alpine3.20 AS builder
 LABEL maintainer="metowolf <i@i-meto.com>"
 
