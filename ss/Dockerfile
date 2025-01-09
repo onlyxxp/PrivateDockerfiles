@@ -24,14 +24,18 @@ RUN apt-get update \
   && tar xvf shadowsocks.zip \
   && mv ssserver /usr/local/bin/  \
   && rm -rf shadowsocks.zip  \
-  && ssserver --help \
-  && wget -O v2ray-plugin.tar.gz https://github.com/shadowsocks/v2ray-plugin/releases/download/v$PLUGIN_VERSION/v2ray-plugin-linux-$TARGETARCH-v$PLUGIN_VERSION.tar.gz \
-  && tar xzvf v2ray-plugin.tar.gz \
-  && mv v2ray-plugin_linux_$TARGETARCH /usr/local/bin/v2ray-plugin  \
-  && rm -rf v2ray-plugin.tar.gz  \
-  && v2ray-plugin -v  \
-  \
-  && apt-get remove -y \
+  && ssserver --help 
+  
+RUN cd /tmp && \
+    TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/v2ray-plugin/releases/latest | grep tag_name | cut -d '"' -f4) && \
+    wget https://github.com/shadowsocks/v2ray-plugin/releases/download/$TAG/v2ray-plugin-linux-amd64-$TAG.tar.gz && \
+    tar -xf *.gz && \
+    rm *.gz && \
+    mv v2ray* /usr/bin/v2ray-plugin && \
+    chmod +x /usr/bin/v2ray-plugin  && \
+    v2ray-plugin -version
+
+RUN apt-get remove -y \
     wget \
     unzip \
   && rm -rf /var/lib/apt/lists/*
