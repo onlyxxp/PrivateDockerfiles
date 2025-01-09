@@ -6,10 +6,7 @@ LABEL maintainer="metowolf <i@i-meto.com>"
 ARG TARGETOS
 ARG TARGETARCH
 ARG VERSION=1.22.0
-ARG SNELL_VERSION=4.1.1
 ARG PLUGIN_VERSION=1.3.2
-
-
 
 RUN apt-get update \
   && apt-get install -y \
@@ -47,7 +44,6 @@ RUN apt-get remove -y \
 
 COPY config.json /etc/shadowsocks-rust/
 COPY entrypoint.sh  /
-
 
 RUN chmod +x /entrypoint.sh
 
