@@ -1,4 +1,4 @@
-FROM shadowsocks/ssserver-rust
+FROM debian:bullseye-slim
 
 LABEL maintainer="123123123" \
       shadowsocks-rust="https://github.com/shadowsocks/shadowsocks-rust" \
@@ -36,6 +36,11 @@ RUN apt-get update \
        *) echo "Unsupported architecture: $TARGETARCH" && exit 1 ;; \
      esac \
   \
+  && wget -O shadowsocks.tar.xz https://github.com/shadowsocks/shadowsocks-rust/releases/download/v1.22.0/shadowsocks-v1.22.0.aarch64-apple-darwin.tar.xz \
+  && tar xvzf shadowsocks.tar.xz -C /root \
+  &&  mv /root/ssserver /usr/local/bin/ssserver \
+  && rm -rf shadowsocks.tar.xz \
+  && ssserver --help \
   && wget -O v2ray-plugin.tar.gz https://github.com/shadowsocks/v2ray-plugin/releases/download/v$VERSION/v2ray-plugin-$TARGETOS-$SNELL_ARCH-v$VERSION.tar.gz \
   && tar xvzf v2ray-plugin.tar.gz -C /root \
   &&  mv /root/v2ray-plugin_linux_$SNELL_ARCH /usr/local/bin/v2ray-plugin \
