@@ -29,8 +29,9 @@ RUN apt-get update \
   \
   && wget -O snell-server.zip https://dl.nssurge.com/snell/snell-server-v$SNELL_VERSION-$TARGETOS-$SNELL_ARCH.zip \
   && unzip snell-server.zip \
-  && mv snell-server /usr/bin \
-  && snell-server --help \
+  && mv snell-server /usr/bin
+
+RUN /usr/bin/snell-server --help
 
 ################ss ###############
 RUN apt-get update \
@@ -49,8 +50,9 @@ RUN apt-get update \
   \
   && wget -O shadowsocks.zip https://github.com/shadowsocks/shadowsocks-rust/releases/download/v$SS_VERSION/shadowsocks-v$SS_VERSION.$SNELL_ARCH-unknown-linux-gnu.tar.xz \
   && tar xvf shadowsocks.zip \
-  && mv ssserver /usr/bin/  \
-  && ssserver --help 
+  && mv ssserver /usr/bin/ 
+
+RUN /usr/bin/ssserver --help
   
 RUN cd /tmp && \
     TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/v2ray-plugin/releases/latest | grep tag_name | cut -d '"' -f4) && \
