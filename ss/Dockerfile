@@ -1,4 +1,4 @@
-FROM shadowsocks/ssserver-rust:latest
+FROM shadowsocks/ssserver-rust
 
 LABEL maintainer="123123123" \
       shadowsocks-rust="https://github.com/shadowsocks/shadowsocks-rust" \
