@@ -43,7 +43,9 @@ RUN apt-get remove -y \
   && rm -rf /var/lib/apt/lists/*
 
 COPY config.json /etc/shadowsocks-rust/
-COPY start_apps.sh  /usr/bin/
+COPY entrypoint.sh  /
+
+chmod +x /entrypoint.sh
 
 # 添加默认环境变量
 ENV SERVER_ADDR 0.0.0.0
@@ -56,4 +58,4 @@ ENV ARGS=
 
 # 更新入口脚本，支持环境变量
 CMD [ "ssserver", "--log-without-time", "-a", "nobody", "-c", "/etc/shadowsocks-rust/config.json" ]
-ENTRYPOINT [ "dumb-init", "--", "/usr/bin/start_apps.sh" ]
+ENTRYPOINT [ "dumb-init", "--", "/entrypoint.sh" ]
