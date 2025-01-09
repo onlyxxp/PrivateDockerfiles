@@ -15,7 +15,7 @@ snell-server -c /etc/snell/snell-server.conf&
 
 echo '{
     "server":'"$SS_SERVER"',
-    "server_port": '"$SS_LISTEN"',
+    "server_port": '"$SS_SERVER_PORT"',
     "mode":"'"$SS_MOD"'",
     "password": "'"$PASSWORD"'",
     "timeout": '"$SS_TIMEOUT"',
