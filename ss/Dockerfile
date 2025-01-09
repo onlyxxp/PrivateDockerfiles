@@ -3,25 +3,27 @@ LABEL maintainer="metowolf <i@i-meto.com>"
 
 ARG TARGETOS
 ARG TARGETARCH
-ARG VERSION=4.1.1
+ARG VERSION=1.22.0
 
 RUN apt-get update \
   && apt-get install -y \
+    tar \
     wget \
     unzip \
     dumb-init \
   \
   && case "$TARGETARCH" in \
-       "amd64") SNELL_ARCH="amd64" ;; \
+       "amd64") SNELL_ARCH="x86_64" ;; \
        "arm64") SNELL_ARCH="aarch64" ;; \
        *) echo "Unsupported architecture: $TARGETARCH" && exit 1 ;; \
      esac \
   \
-  && wget -O snell-server.zip https://dl.nssurge.com/snell/snell-server-v$VERSION-$TARGETOS-$SNELL_ARCH.zip \
-  && unzip snell-server.zip \
-  && mv snell-server /usr/local/bin \
-  && rm -rf snell-server.zip \
-  && snell-server --help \
+  && wget -O shadowsocks.tar.xz https://github.com/shadowsocks/shadowsocks-rust/releases/download/v$VERSION/shadowsocks-v$VERSION.$SNELL_ARCH-unknown-linux-gnu.tar.xz
+
+RUN tar xvzf shadowsocks.tar.xz -C /root 
+RUN mv /root/ssserver /usr/local/bin/ssserver 
+RUN rm -rf shadowsocks.tar.xz 
+RUN ssserver --help \
   \
   && apt-get remove -y \
     wget \
