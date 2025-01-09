@@ -18,7 +18,9 @@ echo '{
     "mode":"'"$SS_MOD"'",
     "password": "'"$PASSWORD"'",
     "timeout": '"$SS_TIMEOUT"',
-    "method": "'"$SS_METHOD"'"
+    "method": "'"$SS_METHOD"'",
+    "plugin" : "'"$PLUGIN"'",
+    "plugin_opts" : "'"$PLUGIN_OPTS"'"
 }' > /etc/shadowsocks-rust/config.json
 cat /etc/shadowsocks-rust/config.json
 
