@@ -1,9 +1,6 @@
 #FROM alpine:3.21
-FROM debian:bullseye-slim
+FROM debian:bullseye-slim AS builder
 #FROM --platform=$BUILDPLATFORM rust:alpine3.20 AS builder
-
-
-FROM alpine:3.21 AS ss-server-v2ray
 
 LABEL maintainer="metowolf <i@i-meto.com>"
 
@@ -16,7 +13,6 @@ ARG SNELL_VERSION=4.1.1
 
 
 ################snell ###############
-COPY snell-server.conf /etc/snell/snell-server.conf
 RUN apt-get update \
   && apt-get install -y \
     wget \
@@ -31,7 +27,7 @@ RUN apt-get update \
   \
   && wget -O snell-server.zip https://dl.nssurge.com/snell/snell-server-v$SNELL_VERSION-$TARGETOS-$SNELL_ARCH.zip \
   && unzip snell-server.zip \
-  && mv snell-server /usr/local/bin \
+  && mv snell-server /usr/bin \
   && rm -rf snell-server.zip \
   && snell-server --help \
   \
@@ -39,10 +35,6 @@ RUN apt-get update \
     wget \
     unzip \
   && rm -rf /var/lib/apt/lists/*
-
-# 添加默认环境变量
-ENV PSK=uYQwNqZbaIOMiZ6Zni8v5x0M09Y8bSK \
-    LISTEN=0.0.0.0:9000
 
 ################ss ###############
 RUN apt-get update \
@@ -61,7 +53,7 @@ RUN apt-get update \
   \
   && wget -O shadowsocks.zip https://github.com/shadowsocks/shadowsocks-rust/releases/download/v$SS_VERSION/shadowsocks-v$SS_VERSION.$SNELL_ARCH-unknown-linux-gnu.tar.xz \
   && tar xvf shadowsocks.zip \
-  && mv ssserver /usr/local/bin/  \
+  && mv ssserver /usr/bin/  \
   && rm -rf shadowsocks.zip  \
   && ssserver --help 
   
@@ -79,9 +71,23 @@ RUN apt-get remove -y \
     unzip \
   && rm -rf /var/lib/apt/lists/*
 
+################ss ###############
+
+
+FROM alpine:3.21 AS ss-server-v2ray
+COPY --from=builder /usr/bin/snell-server /usr/bin/
+COPY --from=builder /usr/bin/ssserver /usr/bin/
+COPY --from=builder /usr/bin/v2ray-plugin /usr/bin/
+
+COPY snell-server.conf /etc/snell/snell-server.conf
 COPY config.json /etc/shadowsocks-rust/
 COPY entrypoint.sh  /
 RUN chmod +x /entrypoint.sh
+
+
+# 添加默认环境变量
+ENV PSK=uYQwNqZbaIOMiZ6Zni8v5x0M09Y8bSK \
+    LISTEN=0.0.0.0:9000
 
 # 添加默认环境变量
 ENV SS_LISTEN=8388 \
@@ -89,7 +95,7 @@ ENV SS_LISTEN=8388 \
     SS_METHOD=aes-256-gcm \
     SS_MOD=tcp_and_udp \ 
     SS_TIMEOUT=600
-################ss ###############
+
 
 
 
