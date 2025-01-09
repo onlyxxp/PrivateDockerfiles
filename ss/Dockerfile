@@ -69,6 +69,7 @@ RUN cd /tmp && \
 FROM alpine:3.21 AS ss-server-v2ray
 COPY --from=builder /usr/bin/snell-server /usr/bin/
 COPY snell-server.conf /etc/snell/snell-server.conf
+RUN ls /usr/bin/s*
 RUN /usr/bin/snell-server --help
 
 COPY --from=builder /usr/bin/ssserver /usr/bin/
