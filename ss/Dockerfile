@@ -18,12 +18,11 @@ RUN apt-get update \
        *) echo "Unsupported architecture: $TARGETARCH" && exit 1 ;; \
      esac \
   \
-  && wget -O shadowsocks.tar.xz https://github.com/shadowsocks/shadowsocks-rust/releases/download/v$VERSION/shadowsocks-v$VERSION.$SNELL_ARCH-unknown-linux-gnu.tar.xz
-
-RUN tar xvzf shadowsocks.tar.xz -C /root 
-RUN mv /root/ssserver /usr/local/bin/ssserver 
-RUN rm -rf shadowsocks.tar.xz 
-RUN ssserver --help \
+  && wget -O shadowsocks.tar.xz https://github.com/shadowsocks/shadowsocks-rust/releases/download/v$VERSION/shadowsocks-v$VERSION.$SNELL_ARCH-unknown-linux-gnu.tar.xz \
+  && tar -xvf shadowsocks.tar.xz -C /root \
+  && mv /root/ssserver /usr/local/bin/ssserver  \
+  && rm -rf shadowsocks.tar.xz  \
+  && ssserver --help \
   \
   && apt-get remove -y \
     wget \
