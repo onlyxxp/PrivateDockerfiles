@@ -29,7 +29,7 @@ RUN apt-get update \
   && tar xzvf v2ray-plugin.tar.gz \
   && mv v2ray-plugin_linux_$TARGETARCH /usr/local/bin/v2ray-plugin  \
   && rm -rf v2ray-plugin.tar.gz  \
-  && v2ray-plugin -version
+  && v2ray-plugin -version  \
   \
   && apt-get remove -y \
     wget \
