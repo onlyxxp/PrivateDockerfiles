@@ -1,8 +1,8 @@
 #FROM alpine:3.21
-FROM debian:bullseye-slim AS builder
-#FROM --platform=$BUILDPLATFORM rust:alpine3.20 AS builder
+#FROM debian:bullseye-slim AS builder
+FROM --platform=$BUILDPLATFORM rust:alpine3.20 AS builder
 RUN set -x \
-    && apk add --no-cache build-base cmake llvm15-dev clang15-libclang clang15 rust-bindgen
+    && apk add --no-cache wget unzip dumb-init tar xz-utils
 
 LABEL maintainer="metowolf <i@i-meto.com>"
 
