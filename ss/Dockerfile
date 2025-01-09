@@ -45,7 +45,7 @@ RUN apt-get remove -y \
 COPY config.json /etc/shadowsocks-rust/
 COPY entrypoint.sh  /
 
-chmod +x /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # 添加默认环境变量
 ENV SERVER_ADDR 0.0.0.0
