@@ -3,7 +3,7 @@
     "server_port": 8388,
     "local_port": 1080,
     "local_address": "127.0.0.1",
-    "password": "123123",
+    "password": "805c30ba-4261-42f9-bec0-2e83adebe3e5",
     "timeout": 300,
     "method": "aes-256-gcm"
 }
