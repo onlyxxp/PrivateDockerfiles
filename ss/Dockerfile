@@ -1,6 +1,10 @@
 #FROM alpine:3.21
 FROM debian:bullseye-slim
 #FROM --platform=$BUILDPLATFORM rust:alpine3.20 AS builder
+
+
+FROM alpine:3.21 AS ss-server-v2ray
+
 LABEL maintainer="metowolf <i@i-meto.com>"
 
 ARG TARGETOS
