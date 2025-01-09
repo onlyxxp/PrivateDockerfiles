@@ -15,13 +15,7 @@ ARG SNELL_VERSION=4.1.1
 
 
 ################snell ###############
-RUN apt-get update \
-  && apt-get install -y \
-    wget \
-    unzip \
-    dumb-init \
-  \
-  && case "$TARGETARCH" in \
+RUN case "$TARGETARCH" in \
        "amd64") SNELL_ARCH="amd64" ;; \
        "arm64") SNELL_ARCH="aarch64" ;; \
        *) echo "Unsupported architecture: $TARGETARCH" && exit 1 ;; \
@@ -34,15 +28,7 @@ RUN apt-get update \
 RUN /usr/bin/snell-server --help
 
 ################ss ###############
-RUN apt-get update \
-  && apt-get install -y \
-    xz-utils \
-    tar \
-    wget \
-    unzip \
-    dumb-init \
-  \
-  && case "$TARGETARCH" in \
+RUN case "$TARGETARCH" in \
        "amd64") SNELL_ARCH="x86_64" ;; \
        "arm64") SNELL_ARCH="aarch64" ;; \
        *) echo "Unsupported architecture: $TARGETARCH" && exit 1 ;; \
