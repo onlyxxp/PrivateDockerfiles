@@ -51,12 +51,11 @@ ENV ARGS=
 
 # 更新入口脚本，支持环境变量
 CMD exec ssserver \
-      -s $SERVER_ADDR \
-      -p $SERVER_PORT \
+      -s "[::]:1080" \
       -k $PASSWORD \
       -m $METHOD \
       --fast-open \
-      -u \
+      -U \
       --plugin $OBFS_PLUGIN \
       --plugin-opts $OBFS_OPTS \
       $ARGS
