@@ -14,7 +14,7 @@ snell-server -c /etc/snell/snell-server.conf&
 
 
 echo '{
-    "server":"::",
+    "server":'"$SS_SERVER"',
     "server_port": '"$SS_LISTEN"',
     "mode":"'"$SS_MOD"'",
     "password": "'"$PASSWORD"'",
