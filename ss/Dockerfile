@@ -24,12 +24,12 @@ RUN apt-get update \
   && tar xvf shadowsocks.zip \
   && mv ssserver /usr/local/bin/  \
   && rm -rf shadowsocks.zip  \
-  && ssserver --version \
+  && ssserver --help \
   && wget -O v2ray-plugin.tar.gz https://github.com/shadowsocks/v2ray-plugin/releases/download/v$PLUGIN_VERSION/v2ray-plugin-linux-$TARGETARCH-v$PLUGIN_VERSION.tar.gz \
   && tar xzvf v2ray-plugin.tar.gz \
   && mv v2ray-plugin_linux_$TARGETARCH /usr/local/bin/v2ray-plugin  \
   && rm -rf v2ray-plugin.tar.gz  \
-  && v2ray-plugin -version  \
+  && v2ray-plugin -v  \
   \
   && apt-get remove -y \
     wget \
@@ -46,7 +46,7 @@ ENV OBFS_OPTS   server
 ENV ARGS=
 
 # 更新入口脚本，支持环境变量
-CMD exec ss-server \
+CMD exec ssserver \
       -s $SERVER_ADDR \
       -p $SERVER_PORT \
       -k $PASSWORD \
