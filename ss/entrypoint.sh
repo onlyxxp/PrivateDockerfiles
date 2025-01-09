@@ -24,7 +24,8 @@ echo '{
     "plugin_opts" : "'"$PLUGIN_OPTS"'"
 }' > /etc/shadowsocks-rust/config.json
 cat /etc/shadowsocks-rust/config.json
-
+ssserver --log-without-time -a nobody -c /etc/shadowsocks-rust/config.json
 #exec "$@"
+
 
 echo "end ~~~~"
