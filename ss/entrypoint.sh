@@ -15,5 +15,5 @@ cat /etc/snell/snell-server.conf
 snell-server -c /etc/snell/snell-server.conf
 
 
-
+cat /etc/shadowsocks-rust/config.json
 exec "$@"
