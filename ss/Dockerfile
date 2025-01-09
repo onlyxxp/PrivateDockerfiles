@@ -7,6 +7,7 @@ ARG VERSION=1.22.0
 
 RUN apt-get update \
   && apt-get install -y \
+    xz-utils \
     tar \
     wget \
     unzip \
