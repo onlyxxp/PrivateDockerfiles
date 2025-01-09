@@ -2,7 +2,7 @@
 #FROM debian:bullseye-slim AS builder
 FROM --platform=$BUILDPLATFORM rust:alpine3.20 AS builder
 RUN set -x \
-    && apk add --no-cache wget unzip dumb-init tar xz-utils
+    && apk add --no-cache wget unzip dumb-init tar xz
 
 LABEL maintainer="metowolf <i@i-meto.com>"
 
