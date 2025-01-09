@@ -19,7 +19,7 @@ RUN apt-get update \
      esac \
   \
   && wget -O shadowsocks.zip https://github.com/shadowsocks/shadowsocks-rust/releases/download/v$VERSION/shadowsocks-v$VERSION.$SNELL_ARCH-unknown-linux-gnu.tar.xz \
-  && unzip shadowsocks.zip \
+  && tar xzvf shadowsocks.zip \
   && mv ssserver /usr/local/bin/  \
   && rm -rf shadowsocks.zip  \
   && ssserver --help \
