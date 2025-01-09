@@ -25,4 +25,6 @@ echo '{
 }' > /etc/shadowsocks-rust/config.json
 cat /etc/shadowsocks-rust/config.json
 
-exec "$@"
+#exec "$@"
+
+echo "end ~~~~"
