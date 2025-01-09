@@ -4,6 +4,7 @@ LABEL maintainer="metowolf <i@i-meto.com>"
 ARG TARGETOS
 ARG TARGETARCH
 ARG VERSION=1.22.0
+ARG PLUGIN_VERSION=1.3.2
 
 RUN apt-get update \
   && apt-get install -y \
@@ -24,7 +25,7 @@ RUN apt-get update \
   && mv ssserver /usr/local/bin/  \
   && rm -rf shadowsocks.zip  \
   && ssserver --help \
-  && wget -O v2ray-plugin.tar.gz https://github.com/shadowsocks/v2ray-plugin/releases/download/v$VERSION/v2ray-plugin-$TARGETOS-$ARCH-v$VERSION.tar.gz \
+  && wget -O v2ray-plugin.tar.gz https://github.com/shadowsocks/v2ray-plugin/releases/download/v$PLUGIN_VERSION/v2ray-plugin-linux-$TARGETARCH-v$PLUGIN_VERSION.tar.gz \
   && tar xzvf v2ray-plugin.tar.gz \
   && mv v2ray-plugin /usr/local/bin/  \
   && rm -rf v2ray-plugin.tar.gz  \
