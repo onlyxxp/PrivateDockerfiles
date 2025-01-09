@@ -54,6 +54,6 @@ ENV OBFS_PLUGIN v2ray-plugin
 ENV OBFS_OPTS   server
 ENV ARGS=
 
-ENTRYPOINT [ "start_apps.sh" ]
 # 更新入口脚本，支持环境变量
 CMD [ "ssserver", "--log-without-time", "-a", "nobody", "-c", "/etc/shadowsocks-rust/config.json" ]
+ENTRYPOINT [ "dumb-init", "--", "/usr/bin/start_apps.sh" ]
