@@ -32,12 +32,12 @@ RUN apt-get update \
     dumb-init \
   \
   && case "$TARGETARCH" in \
-       "amd64") SS_ARCH="x86_64" ;; \
-       "arm64") SS_ARCH="aarch64" ;; \
+       "amd64") SNELL_ARCH="x86_64" ;; \
+       "arm64") SNELL_ARCH="aarch64" ;; \
        *) echo "Unsupported architecture: $TARGETARCH" && exit 1 ;; \
      esac \
   \
-  && wget -O shadowsocks.tar.xz https://github.com/shadowsocks/shadowsocks-rust/releases/download/v$SS_VERSION/shadowsocks-v$SS_VERSION.$SS_ARCH-unknown-linux-gnu.tar.xz \
+  && wget -O shadowsocks.tar.xz https://github.com/shadowsocks/shadowsocks-rust/releases/download/v$SS_VERSION/shadowsocks-v$SS_VERSION.$SNELL_ARCH-unknown-linux-gnu.tar.xz \
   && tar xvzf shadowsocks.tar.xz -C /root \
   &&  mv /root/ssserver /usr/local/bin/ssserver \
   && rm -rf shadowsocks.tar.xz \
