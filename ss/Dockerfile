@@ -52,10 +52,4 @@ ENV OBFS_OPTS   server
 ENV ARGS=
 
 # 更新入口脚本，支持环境变量
-CMD exec ssserver \
-      -k $PASSWORD \
-      -m $METHOD \
-      --fast-open \
-      --plugin $OBFS_PLUGIN \
-      --plugin-opts $OBFS_OPTS \
-      $ARGS
+CMD [ "ssserver", "--log-without-time", "-a", "nobody", "-c", "/etc/shadowsocks-rust/config.json" ]
