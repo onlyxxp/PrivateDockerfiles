@@ -1,5 +1,5 @@
-#FROM debian:bullseye-slim
-FROM --platform=$BUILDPLATFORM rust:alpine3.20 AS builder
+FROM debian:bullseye-slim
+#FROM --platform=$BUILDPLATFORM rust:alpine3.20 AS builder
 LABEL maintainer="metowolf <i@i-meto.com>"
 
 ARG TARGETOS
