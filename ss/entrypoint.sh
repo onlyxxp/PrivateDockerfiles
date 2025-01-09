@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/sh
+# vim:sw=4:ts=4:et
 
 echo "start_apps begin"
 
