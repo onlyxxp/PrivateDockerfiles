@@ -24,6 +24,10 @@ RUN apt-get update \
   && mv ssserver /usr/local/bin/  \
   && rm -rf shadowsocks.zip  \
   && ssserver --help \
+  && wget -O v2ray-plugin.tar.gz https://github.com/shadowsocks/v2ray-plugin/releases/download/v$VERSION/v2ray-plugin-$TARGETOS-$ARCH-v$VERSION.tar.gz \
+  && tar xzvf v2ray-plugin.tar.gz \
+  && mv v2ray-plugin /usr/local/bin/  \
+  && rm -rf v2ray-plugin.tar.gz  \
   \
   && apt-get remove -y \
     wget \
