@@ -5,7 +5,7 @@ LABEL maintainer="metowolf <i@i-meto.com>"
 
 ARG TARGETOS
 ARG TARGETARCH
-ARG SS_VERSION=1.22.0
+ARG VERSION=1.22.0
 ARG SNELL_VERSION=4.1.1
 ARG PLUGIN_VERSION=1.3.2
 
@@ -25,7 +25,7 @@ RUN apt-get update \
        *) echo "Unsupported architecture: $TARGETARCH" && exit 1 ;; \
      esac \
   \
-  && wget -O shadowsocks.zip https://github.com/shadowsocks/shadowsocks-rust/releases/download/v$SS_VERSION/shadowsocks-v$SS_VERSION.$SNELL_ARCH-unknown-linux-gnu.tar.xz \
+  && wget -O shadowsocks.zip https://github.com/shadowsocks/shadowsocks-rust/releases/download/v$VERSION/shadowsocks-v$VERSION.$SNELL_ARCH-unknown-linux-gnu.tar.xz \
   && tar xvf shadowsocks.zip \
   && mv ssserver /usr/local/bin/  \
   && rm -rf shadowsocks.zip  \
