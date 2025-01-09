@@ -76,12 +76,15 @@ RUN apt-get remove -y \
 
 FROM alpine:3.21 AS ss-server-v2ray
 COPY --from=builder /usr/bin/snell-server /usr/bin/
-COPY --from=builder /usr/bin/ssserver /usr/bin/
-COPY --from=builder /usr/bin/v2ray-plugin /usr/bin/
-
 COPY snell-server.conf /etc/snell/snell-server.conf
+RUN snell-server --help
+
+COPY --from=builder /usr/bin/ssserver /usr/bin/
 COPY config.json /etc/shadowsocks-rust/
 COPY entrypoint.sh  /usr/bin/
+RUN ssserver --help 
+COPY --from=builder /usr/bin/v2ray-plugin /usr/bin/
+
 RUN chmod +x /usr/bin/entrypoint.sh
 
 
