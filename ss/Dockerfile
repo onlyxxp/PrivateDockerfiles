@@ -51,7 +51,6 @@ ENV ARGS=
 
 # 更新入口脚本，支持环境变量
 CMD exec ssserver \
-      -s "[::]:1080" \
       -k $PASSWORD \
       -m $METHOD \
       --fast-open \
