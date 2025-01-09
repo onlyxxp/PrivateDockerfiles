@@ -17,7 +17,7 @@ echo '{
     "server_port": '"$SS_LISTEN"',
     "mode":"'"$SS_MOD"'",
     "password": "'"$PASSWORD"'",
-    "timeout": "'"$SS_TIMEOUT"'",
+    "timeout": '"$SS_TIMEOUT"',
     "method": "'"$SS_METHOD"'"
 }' > /etc/shadowsocks-rust/config.json
 cat /etc/shadowsocks-rust/config.json
