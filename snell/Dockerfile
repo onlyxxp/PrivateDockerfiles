@@ -1,15 +1,15 @@
 #FROM debian:bullseye-slim
 #FROM zyallday/snell-server:v4
 #FROM --platform=$BUILDPLATFORM rust:.20 AS builder
-
-FROM alpine:3.20
+FROM zyallday/snell-server:v4
+#FROM alpine:3.20
 LABEL maintainer="metowolf <i@i-meto.com>"
 
 ENV LANG=C.UTF-8
 
 # NOTE: Glibc 2.35 package is broken: https://github.com/sgerrand/alpine-pkg-glibc/issues/176, so we stick to 2.34 for now
-RUN set -x \
-    && apk add --no-cache build-base cmake llvm15-dev clang15-libclang clang15 rust-bindgen  unzip dumb-init  wget
+#RUN set -x \
+#   && apk add --no-cache build-base cmake llvm15-dev clang15-libclang clang15 rust-bindgen  unzip dumb-init  wget
 
 
 
