@@ -1,4 +1,5 @@
-FROM --platform=$BUILDPLATFORM debian:bullseye-slim AS builder
+#FROM --platform=$BUILDPLATFORM debian:bullseye-slim AS builder
+FROM --platform=$BUILDPLATFORM  frolvlad/alpine-glibc  AS builder
 LABEL maintainer="debian <i@i-debian.com>"
 
 ARG TARGETOS
@@ -8,7 +9,8 @@ ARG SNELL_VERSION=4.1.1
 
 RUN ldd --version
 
-RUN apt-get update && apt-get install -y wget unzip  dumb-init  xz-utils unzip tar
+#RUN apt-get update && apt-get install -y wget unzip  dumb-init  xz-utils unzip tar
+RUN apk apk update && apk add --no-cache wget unzip  dumb-init  xz unzip tar
 
 RUN mkdir -p /user/local/temp-build
 
@@ -43,7 +45,8 @@ RUN cd /tmp && \
 
 
 ################ pack clean image ###############
-FROM debian:bullseye-slim AS ss-server-v2ray
+#FROM debian:bullseye-slim AS ss-server-v2ray
+FROM frolvlad/alpine-glibc AS ss-server-v2ray
 
 COPY --from=builder /user/local/temp-build/* /usr/bin/
 
