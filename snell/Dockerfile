@@ -58,7 +58,6 @@ ARG VERSION=1.0
 ARG SNELL_VERSION=4.1.1
 
 ENV SNELL_URL=https://dl.nssurge.com/snell/snell-server-v4.1.1-linux-amd64.zip
-RUN /bin/sh -c wget --no-check-certificate -O snell.zip $SNELL_URL && 	unzip snell.zip && 	rm -f snell.zip && 	chmod +x snell-server && 	mv snell-server /usr/bin/  # buildkit
 
 #snell 
 RUN wget --no-check-certificate -O snell-server.zip $SNELL_URL
