@@ -15,8 +15,10 @@ ENV LANG=C.UTF-8
 
 ARG TARGETOS
 ARG TARGETARCH
-ARG VERSION=1.0
+ARG VERSION=1.1
 ARG SNELL_VERSION=4.0.1
+
+RUN cd /tmp
 
 ENV SNELL_URL=https://dl.nssurge.com/snell/snell-server-v4.1.1-linux-amd64.zip
 
@@ -28,6 +30,14 @@ RUN snell-server --help
 RUN wget  -O /usr/bin/shadow-tls https://github.com/ihciah/shadow-tls/releases/latest/download/shadow-tls-x86_64-unknown-linux-musl \
     && chmod +x /usr/bin/shadow-tls
 RUN shadow-tls --help
+
+##ss 
+RUN TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/shadowsocks-rust/releases/latest | grep tag_name | cut -d '"' -f4)  \
+  && wget -O shadowsocks.zip https://github.com/shadowsocks/shadowsocks-rust/releases/download/$TAG/shadowsocks-$TAG.x86_64-unknown-linux-gnu.tar.xz \
+  && tar xvf shadowsocks.zip \
+  && mv ssserver /usr/bin/ssserver
+
+RUN ssserver --help
 
 
 
