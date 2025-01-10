@@ -7,6 +7,7 @@ echo ":::entrypoint begin:::"
 echo "[snell-server]
 listen = 0.0.0.0:$SNELL_LISTEN
 psk = $PSK
+dns = 1.1.1.1, 8.8.8.8, 2001:4860:4860::8888
 ipv6 = false" > /etc/snell/snell-server.conf
 cat /etc/snell/snell-server.conf
 # snell
