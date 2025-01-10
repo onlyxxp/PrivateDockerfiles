@@ -20,7 +20,7 @@ RUN case "$TARGETARCH" in \
        *) echo "Unsupported architecture: $TARGETARCH" && exit 1 ;; \
      esac \
   \
-  && wget -O snell-server.zip https://dl.nssurge.com/snell/snell-server-v$SNELL_VERSION-$TARGETOS-$SNELL_ARCH.zip \
+  && wget -O snell-server.zip https://dl.nssurge.com/snell/snell-server-v$SNELL_VERSION-linux-amd64.zip \
   && unzip snell-server.zip \
   && mv snell-server /usr/bin
 
