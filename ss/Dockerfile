@@ -58,5 +58,7 @@ ENV SS_LISTEN=8388 \
     SS_MOD=tcp_and_udp \ 
     SS_TIMEOUT=600
 
+ENV TZ=Asia/Shanghai
+
 ENTRYPOINT [ "entrypoint.sh" ]
 CMD [ "echo", "hello!" ]
