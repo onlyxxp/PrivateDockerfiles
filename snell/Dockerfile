@@ -1,6 +1,8 @@
 #FROM debian:bullseye-slim
+#FROM zyallday/snell-server:v4
+#FROM --platform=$BUILDPLATFORM rust:.20 AS builder
 
-FROM --platform=$BUILDPLATFORM rust:alpine3.20 AS builder
+FROM frolvlad/alpine-glibc
 
 ARG TARGETARCH
 
@@ -17,7 +19,7 @@ ARG SNELL_VERSION=4.1.1
 ##snell 
 RUN cd /tmp
 RUN wget -O snell-server.zip https://dl.nssurge.com/snell/snell-server-v$SNELL_VERSION-linux-amd64.zip 
-RUN  unzip snell-server.zip 
+RUN unzip snell-server.zip 
 RUN ls -l
 RUN pwd
 RUN  mv /tmp/snell-server /user/bin/snell-server
