@@ -1,4 +1,4 @@
-ENV VERSION=1.0
+ARG VERSION=1.0
 
 ############################
 # STEP 1 build executable binary
