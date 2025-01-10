@@ -8,11 +8,12 @@ echo "[snell-server]
 listen = 0.0.0.0:$SNELL_LISTEN
 psk = $PSK
 ipv6 = false" > /etc/snell/snell-server.conf
-
 cat /etc/snell/snell-server.conf
+# snell
 snell-server -c /etc/snell/snell-server.conf&
 
-#shadow-tls --fastopen --v3 server --listen ::0:$SHADOW_PORT --server 127.0.0.1:$SNELL_LISTEN --tls  $SHADOW_HOST --password $SHADOW_PWD &
+# shadow-tls
+shadow-tls --fastopen --v3 server --listen ::0:$SHADOW_PORT --server 127.0.0.1:$SNELL_LISTEN --tls  $SHADOW_HOST --password $SHADOW_PWD &
 
 # 初始化ss config
 echo '{
@@ -27,8 +28,7 @@ echo '{
 }' > /etc/shadowsocks-rust/config.json
 cat /etc/shadowsocks-rust/config.json
 echo ":::entrypoint end:::"
-
-#REAL CMD
+#SSSS
 ssserver --log-without-time -a nobody -c /etc/shadowsocks-rust/config.json
 
 #exec "$@"
