@@ -20,7 +20,7 @@ RUN wget -O snell-server.zip https://dl.nssurge.com/snell/snell-server-v$SNELL_V
   && unzip snell-server.zip \
   && mv snell-server /user/local/temp-build/snell-server
 
-RUN /user/local/temp-build/snell-server --help
+#RUN /user/local/temp-build/snell-server --help
 
 ##shadow-tls
 RUN wget  -O /user/local/temp-build/shadow-tls https://github.com/ihciah/shadow-tls/releases/latest/download/shadow-tls-x86_64-unknown-linux-musl \
@@ -32,7 +32,7 @@ RUN TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/shadowsocks-rust/re
   && tar xvf shadowsocks.zip \
   && mv ssserver /user/local/temp-build/ssserver
 
-#RUN /user/local/temp-build/ssserver --help
+RUN /user/local/temp-build/ssserver --help
 
 ##v2ray plugin 
 RUN cd /tmp && \
@@ -53,11 +53,11 @@ RUN apk add --no-cache libstdc++
 COPY --from=builder /user/local/temp-build/* /usr/bin/
 
 COPY snell-server.conf /etc/snell/snell-server.conf
-RUN /usr/bin/snell-server --help
+#RUN /usr/bin/snell-server --help
 
 
 COPY config.json /etc/shadowsocks-rust/
-#RUN /usr/bin/ssserver --help 
+RUN /usr/bin/ssserver --help 
 COPY entrypoint.sh  /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 
