@@ -1,7 +1,7 @@
 #FROM debian:bullseye-slim
 #FROM zyallday/snell-server:v4
 #FROM --platform=$BUILDPLATFORM rust:.20 AS builder
-FROM zyallday/snell-server:v4
+FROM zyallday/snell-server:v4  AS builder
 #FROM alpine:3.20
 LABEL maintainer="metowolf <i@i-meto.com>"
 
@@ -39,6 +39,12 @@ RUN TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/shadowsocks-rust/re
 
 RUN ssserver --help
 RUN rm -rf /tmp/* 
+
+
+
+FROM zyallday/snell-server:v4
+COPY --from=builder /usr/bin/snell-server /usr/bin/
+COPY --from=builder /usr/bin/ssserver /usr/bin/
 
 
 
