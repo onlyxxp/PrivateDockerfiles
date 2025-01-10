@@ -11,7 +11,8 @@ LABEL maintainer="metowolf <i@i-meto.com>"
 
 ARG TARGETOS
 ARG TARGETARCH
-ARG VERSION=4.1.1
+ARG VERSION=1.0
+ARG SNELL_VERSION=4.1.1
 
 ##snell 
 RUN wget -O snell-server.zip https://dl.nssurge.com/snell/snell-server-v$SNELL_VERSION-linux-amd64.zip \
