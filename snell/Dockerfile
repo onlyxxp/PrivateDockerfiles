@@ -55,7 +55,7 @@ RUN set -x \
 ARG TARGETOS
 ARG TARGETARCH
 ARG VERSION=1.0
-ARG SNELL_VERSION=4.1.1
+ARG SNELL_VERSION=4.0.1
 
 ENV SNELL_URL=https://dl.nssurge.com/snell/snell-server-v4.1.1-linux-amd64.zip
 
