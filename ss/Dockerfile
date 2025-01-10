@@ -13,15 +13,10 @@ ARG SS_VERSION=1.22.0
 ARG PLUGIN_VERSION=1.3.2
 ARG SNELL_VERSION=4.1.1
 
+RUN apt-get update && apt-get install -y wget unzip  dumb-init  xz-utils unzip tar
 
 ################snell ###############
-RUN apt-get update \
-  && apt-get install -y \
-    wget \
-    unzip \
-    dumb-init \
-  \
-  && case "$TARGETARCH" in \
+RUN case "$TARGETARCH" in \
        "amd64") SNELL_ARCH="amd64" ;; \
        "arm64") SNELL_ARCH="aarch64" ;; \
        *) echo "Unsupported architecture: $TARGETARCH" && exit 1 ;; \
@@ -34,15 +29,7 @@ RUN apt-get update \
 RUN /usr/bin/snell-server --help
 
 ################ss ###############
-RUN apt-get update \
-  && apt-get install -y \
-    xz-utils \
-    tar \
-    wget \
-    unzip \
-    dumb-init \
-  \
-  && case "$TARGETARCH" in \
+RUN case "$TARGETARCH" in \
        "amd64") SNELL_ARCH="x86_64" ;; \
        "arm64") SNELL_ARCH="aarch64" ;; \
        *) echo "Unsupported architecture: $TARGETARCH" && exit 1 ;; \
@@ -53,7 +40,8 @@ RUN apt-get update \
   && mv ssserver /usr/bin/ 
 
 RUN /usr/bin/ssserver --help
-  
+
+################ v2ray ###############
 RUN cd /tmp && \
     TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/v2ray-plugin/releases/latest | grep tag_name | cut -d '"' -f4) && \
     wget https://github.com/shadowsocks/v2ray-plugin/releases/download/$TAG/v2ray-plugin-linux-amd64-$TAG.tar.gz && \
@@ -63,10 +51,10 @@ RUN cd /tmp && \
     chmod +x /usr/bin/v2ray-plugin  && \
     v2ray-plugin -version
 
-################ss ###############
 
-
+################ pack clean image ###############
 FROM debian:bullseye-slim AS ss-server-v2ray
+
 COPY --from=builder /usr/bin/snell-server /usr/bin/
 COPY snell-server.conf /etc/snell/snell-server.conf
 RUN ls /usr/bin/s*
