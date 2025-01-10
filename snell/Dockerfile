@@ -9,8 +9,8 @@ LABEL maintainer="metowolf <i@i-meto.com>"
 ENV LANG=C.UTF-8
 
 # NOTE: Glibc 2.35 package is broken: https://github.com/sgerrand/alpine-pkg-glibc/issues/176, so we stick to 2.34 for now
-#RUN set -x \
-#   && apk add --no-cache build-base cmake llvm15-dev clang15-libclang clang15 rust-bindgen  unzip dumb-init  wget
+RUN set -x \
+   && apk add --no-cache build-base cmake llvm15-dev clang15-libclang clang15 rust-bindgen  unzip dumb-init  wget
 
 
 
