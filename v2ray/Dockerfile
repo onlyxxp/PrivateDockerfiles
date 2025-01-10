@@ -5,7 +5,7 @@ FROM --platform=$BUILDPLATFORM rust:alpine3.20 AS builder
 ARG TARGETARCH
 
 RUN set -x \
-    && apk add --no-cache build-base cmake llvm15-dev clang15-libclang clang15 rust-bindgen
+    && apk add --no-cache build-base cmake llvm15-dev clang15-libclang clang15 rust-bindgen  git
 
 RUN git clone --progress git@github.com:shadowsocks/shadowsocks-rust.git .
 WORKDIR /root/shadowsocks-rust
