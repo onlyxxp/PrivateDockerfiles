@@ -1,8 +1,7 @@
-#FROM debian:bullseye-slim
-#FROM zyallday/snell-server:v4
+#FROM debian:bullseye-slim  AS builder
 #FROM --platform=$BUILDPLATFORM rust:.20 AS builder
 #FROM zyallday/snell-server:v4  AS builder
-FROM alpine:3.20
+FROM alpine:3.20   AS builder
 #FROM frolvlad/alpine-glibc  AS builder
 #FROM frolvlad/alpine-glibc:alpine-3.19_glibc-2.34 AS builder
 LABEL maintainer="metowolf <i@i-meto.com>"
