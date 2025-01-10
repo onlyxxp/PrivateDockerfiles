@@ -43,8 +43,8 @@ RUN cd /tmp && \
 
 
 ################ pack clean image ###############
-#FROM debian:bullseye-slim AS ss-server-v2ray
-FROM scratch AS ss-server-v2ray
+FROM debian:bullseye-slim AS ss-server-v2ray
+#FROM scratch AS ss-server-v2ray
 
 COPY --from=builder /user/local/temp-build/* /usr/bin/
 
