@@ -68,7 +68,7 @@ ENV SHADOW_PORT=1010 \
 ENV SERVER=0.0.0.0 \
     SERVER_PORT=8388 \
     PWD=12aa.345g  \
-    METHOD=aes-256-gcm \
+    METHOD=aes-128-gcm \
     MOD=tcp_and_udp  \
     TIMEOUT=600
 
