@@ -62,6 +62,7 @@ ENV SNELL_URL=https://dl.nssurge.com/snell/snell-server-v4.1.1-linux-amd64.zip
 #snell 
 RUN wget --no-check-certificate -O snell-server.zip $SNELL_URL
 RUN unzip snell-server.zip && 	rm -f snell-server.zip && 	chmod +x snell-server
+RUN ./snell-server --help
 RUN ls -l
 RUN pwd
 RUN  mv snell-server /user/bin/
