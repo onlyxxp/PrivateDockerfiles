@@ -14,7 +14,7 @@ RUN mkdir -p /user/local/temp-build
 ##snell 
 RUN wget -O snell-server.zip https://dl.nssurge.com/snell/snell-server-v$SNELL_VERSION-linux-amd64.zip \
   && unzip snell-server.zip \
-  && mv snell-server /user/local/temp-build/
+  && mv snell-server /user/local/temp-build/snell-server
 
 RUN /user/local/temp-build/snell-server --help
 
@@ -26,7 +26,7 @@ RUN wget  -O /user/local/temp-build/shadow-tls https://github.com/ihciah/shadow-
 RUN TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/shadowsocks-rust/releases/latest | grep tag_name | cut -d '"' -f4)  \
   && wget -O shadowsocks.zip https://github.com/shadowsocks/shadowsocks-rust/releases/download/$TAG/shadowsocks-$TAG.x86_64-unknown-linux-gnu.tar.xz \
   && tar xvf shadowsocks.zip \
-  && mv ssserver /user/local/temp-build/
+  && mv ssserver /user/local/temp-build/ssserver
 
 RUN /user/local/temp-build/ssserver --help
 
@@ -35,8 +35,8 @@ RUN cd /tmp && \
     TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/v2ray-plugin/releases/latest | grep tag_name | cut -d '"' -f4) && \
     wget https://github.com/shadowsocks/v2ray-plugin/releases/download/$TAG/v2ray-plugin-linux-amd64-$TAG.tar.gz && \
     tar xf *.gz && \
-    mv v2ray* /user/local/temp-build/ && \
-    chmod +x /user/local/temp-build/  && \
+    mv v2ray* /user/local/temp-build/v2ray-plugin && \
+    chmod +x /user/local/temp-build/v2ray-plugin  && \
     /user/local/temp-build/v2ray-plugin -version
 
 
