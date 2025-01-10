@@ -9,8 +9,6 @@ LABEL maintainer="metowolf <i@i-meto.com>"
 ARG TARGETOS
 ARG TARGETARCH
 ARG VERSION=1.24.1
-ARG SS_VERSION=1.22.0
-ARG PLUGIN_VERSION=1.3.2
 ARG SNELL_VERSION=4.1.1
 
 RUN apt-get update && apt-get install -y wget unzip  dumb-init  xz-utils unzip tar
