@@ -3,7 +3,7 @@ LABEL maintainer="debian <i@i-debian.com>"
 
 ARG TARGETOS
 ARG TARGETARCH
-ARG VERSION=2.0
+ARG VERSION=2.0.1
 ARG SNELL_VERSION=4.1.1
 
 RUN ldd --version
