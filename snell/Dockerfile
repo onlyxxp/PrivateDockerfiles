@@ -1,17 +1,19 @@
-FROM debian:bullseye-slim
+#FROM debian:bullseye-slim
+
+FROM --platform=$BUILDPLATFORM rust:alpine3.20 AS builder
+
+ARG TARGETARCH
+
+RUN set -x \
+    && apk add --no-cache build-base cmake llvm15-dev clang15-libclang clang15 rust-bindgen  unzip dumb-init  wget
+
 LABEL maintainer="metowolf <i@i-meto.com>"
 
 ARG TARGETOS
 ARG TARGETARCH
 ARG VERSION=4.1.1
 
-RUN apt-get update \
-  && apt-get install -y \
-    wget \
-    unzip \
-    dumb-init \
-  \
-  && case "$TARGETARCH" in \
+RUN case "$TARGETARCH" in \
        "amd64") SNELL_ARCH="amd64" ;; \
        "arm64") SNELL_ARCH="aarch64" ;; \
        *) echo "Unsupported architecture: $TARGETARCH" && exit 1 ;; \
