@@ -11,7 +11,8 @@ ipv6 = false" > /etc/snell/snell-server.conf
 cat /etc/snell/snell-server.conf
 snell-server -c /etc/snell/snell-server.conf&
 
-
+export SHADOW_PORT=8443
+/usr/local/bin/shadow-tls --fastopen --v3 server --listen ::0:$SHADOW_PORT --server 127.0.0.1:$LISTEN --tls  publicassets.cdn-apple.com  
 
 echo '{
     "server": "'"$SERVER"'",
