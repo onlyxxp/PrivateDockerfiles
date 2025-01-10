@@ -26,7 +26,7 @@ jobs:
           DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          cd ss
+          cd v2ray
           VERSION=`cat Dockerfile | grep "ARG VERSION" | awk -F '=' '{print $2}'`
           echo $GITHUB_TOKEN | docker login ghcr.io -u onlyxxp --password-stdin
           docker buildx build --platform linux/amd64 -t ghcr.io/onlyxxp/v2ray:$VERSION --squash --push .
