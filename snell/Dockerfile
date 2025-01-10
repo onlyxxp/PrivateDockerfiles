@@ -8,6 +8,9 @@ FROM --platform=$BUILDPLATFORM rust:alpine3.20 AS builder
 LABEL maintainer="metowolf <i@i-meto.com>"
 
 
+RUN set -x \
+    && apk add --no-cache build-base cmake llvm15-dev clang15-libclang clang15 rust-bindgen
+
 ENV GLIBC_VERSION 2.35-r1
 
 # Download and install glibc
