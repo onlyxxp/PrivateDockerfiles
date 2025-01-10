@@ -32,7 +32,7 @@ RUN TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/shadowsocks-rust/re
   && tar xvf shadowsocks.zip \
   && mv ssserver /user/local/temp-build/ssserver
 
-RUN /user/local/temp-build/ssserver --help
+#RUN /user/local/temp-build/ssserver --help
 
 ##v2ray plugin 
 RUN cd /tmp && \
@@ -57,7 +57,7 @@ RUN /usr/bin/snell-server --help
 
 
 COPY config.json /etc/shadowsocks-rust/
-RUN /usr/bin/ssserver --help 
+#RUN /usr/bin/ssserver --help 
 COPY entrypoint.sh  /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 
