@@ -56,6 +56,20 @@ RUN chmod +x /usr/bin/entrypoint.sh
 
 
 ENV TZ=Asia/Shanghai
+# snell
+ENV PSK=uYQwNqZbaIOMiZ6Zni8v5x0M09Y8bSK \
+    SNELL_LISTEN=9000
+# shadow_tls
+ENV SHADOW_PORT=1010 \
+    SHADOW_PWD=JsJeWtjiUyJ5ye \
+    SHADOW_HOST=publicassets.cdn-apple.com
+# SS
+ENV SERVER=0.0.0.0 \
+    SERVER_PORT=8388 \
+    PWD=12aa.345g  \
+    METHOD=aes-256-gcm \
+    MOD=tcp_and_udp  \
+    TIMEOUT=600
 
 ENTRYPOINT [ "entrypoint.sh" ]
 CMD [ "echo", "hello!" ]
