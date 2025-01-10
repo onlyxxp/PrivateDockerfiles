@@ -31,13 +31,13 @@ RUN snell-server --help
    
 #RUN shadow-tls --help
 
-##ss 
-#RUN TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/shadowsocks-rust/releases/latest | grep tag_name | cut -d '"' -f4)  \
-#  && wget -O shadowsocks.zip https://github.com/shadowsocks/shadowsocks-rust/releases/download/$TAG/shadowsocks-$TAG.x86_64-unknown-linux-gnu.tar.xz \
-#  && tar xvf shadowsocks.zip \
-#  && mv ssserver /usr/bin/ssserver
+#ss 
+RUN TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/shadowsocks-rust/releases/latest | grep tag_name | cut -d '"' -f4)  \
+  && wget -O shadowsocks.zip https://github.com/shadowsocks/shadowsocks-rust/releases/download/$TAG/shadowsocks-$TAG.x86_64-unknown-linux-gnu.tar.xz \
+  && tar xvf shadowsocks.zip \
+  && mv ssserver /usr/bin/ssserver
 
-#RUN ssserver --help
+RUN ssserver --help
 
 
 
