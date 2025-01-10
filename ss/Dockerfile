@@ -47,20 +47,13 @@ COPY --from=builder /user/local/temp-build/* /usr/bin/
 
 COPY snell-server.conf /etc/snell/snell-server.conf
 RUN /usr/bin/snell-server --help
-# 添加默认环境变量
-ENV PSK=uYQwNqZbaIOMiZ6Zni8v5x0M09Y8bSK \
-    LISTEN=0.0.0.0:9000
+
 
 COPY config.json /etc/shadowsocks-rust/
 RUN /usr/bin/ssserver --help 
 COPY entrypoint.sh  /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
-# 添加默认环境变量
-ENV SS_LISTEN=8388 \
-    SS_PWD=12aa.345g \
-    SS_METHOD=aes-256-gcm \
-    SS_MOD=tcp_and_udp \ 
-    SS_TIMEOUT=600
+
 
 ENV TZ=Asia/Shanghai
 
