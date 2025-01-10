@@ -27,7 +27,7 @@ RUN ls -l
 RUN pwd
 RUN  mv snell-server /usr/bin/
 
-#RUN snell-server --help
+RUN snell-server --help
 
 # 添加默认环境变量
 ENV PSK=uYQwNqZbaIOMiZ6Zni8v5x0M09Y8bSK \
