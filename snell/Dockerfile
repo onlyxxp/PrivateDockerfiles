@@ -1,12 +1,25 @@
 #FROM debian:bullseye-slim
 #FROM zyallday/snell-server:v4
 #FROM --platform=$BUILDPLATFORM rust:.20 AS builder
-FROM zyallday/snell-server:v4  AS builder
-#FROM alpine:3.20
+#FROM zyallday/snell-server:v4  AS builder
+FROM alpine:3.20
 #FROM frolvlad/alpine-glibc  AS builder
 #FROM frolvlad/alpine-glibc:alpine-3.19_glibc-2.34 AS builder
 LABEL maintainer="metowolf <i@i-meto.com>"
 
+
+ENV GLIBC_VERSION 2.35-r1
+
+# Download and install glibc
+RUN apk add --update curl && \
+  curl -Lo /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub && \
+  curl -Lo glibc.apk "https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk" && \
+  curl -Lo glibc-bin.apk "https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-bin-${GLIBC_VERSION}.apk" && \
+  apk add --force-overwrite glibc-bin.apk glibc.apk && \
+  /usr/glibc-compat/sbin/ldconfig /lib /usr/glibc-compat/lib && \
+  echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf && \
+  apk del curl && \
+  rm -rf /var/cache/apk/* glibc.apk glibc-bin.apk
 
 #RUN set -x  && apk add libstdc++6 libstdc++
 
@@ -44,8 +57,8 @@ RUN set -x  && snell-server --help
 RUN rm -rf /tmp/* 
 
 
-
-FROM zyallday/snell-server:v4
+FROM alpine:3.20
+#FROM zyallday/snell-server:v4
 #FROM frolvlad/alpine-glibc
 #FROM frolvlad/alpine-glibc:alpine-3.19_glibc-2.34
 COPY --from=builder /usr/bin/snell-server /usr/bin/
