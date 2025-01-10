@@ -1,7 +1,7 @@
 #!/bin/sh
 # vim:sw=4:ts=4:et
 
-echo "start_apps begin"
+echo ":::entrypoint begin:::"
 
 echo "[snell-server]
 listen = $LISTEN
@@ -29,4 +29,4 @@ ssserver --log-without-time -a nobody -c /etc/shadowsocks-rust/config.json
 exec "$@"
 
 
-echo "end ~~~~"
+echo ":::entrypoint end:::"
