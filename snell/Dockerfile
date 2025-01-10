@@ -24,6 +24,13 @@ ENV SNELL_URL=https://dl.nssurge.com/snell/snell-server-v4.1.1-linux-amd64.zip
 RUN wget --no-check-certificate -O snell-server.zip $SNELL_URL && unzip snell-server.zip && 	rm -f snell-server.zip && 	chmod +x snell-server  && mv snell-server /usr/bin/
 RUN snell-server --help
 
+##shadow-tls
+RUN wget  -O /user/bin/shadow-tls https://github.com/ihciah/shadow-tls/releases/latest/download/shadow-tls-x86_64-unknown-linux-musl \
+    && chmod +x /user/bin/shadow-tls
+RUN shadow-tls --help
+
+
+
 # 添加默认环境变量
 ENV PSK=uYQwNqZbaIOMiZ6Zni8v5x0M09Y8bSK \
     LISTEN=0.0.0.0:9000
