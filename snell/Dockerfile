@@ -2,7 +2,7 @@
 #FROM zyallday/snell-server:v4
 #FROM --platform=$BUILDPLATFORM rust:.20 AS builder
 
-FROM FROM alpine:3.20
+FROM alpine:3.20
 LABEL maintainer="metowolf <i@i-meto.com>"
 
 ENV LANG=C.UTF-8
