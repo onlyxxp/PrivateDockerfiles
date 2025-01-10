@@ -38,6 +38,7 @@ RUN TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/shadowsocks-rust/re
   && mv ssserver /usr/bin/ssserver
 
 RUN ssserver --help
+RUN rm -rf /tmp/* --help
 
 
 
