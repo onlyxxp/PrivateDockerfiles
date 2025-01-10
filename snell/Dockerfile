@@ -26,14 +26,14 @@ RUN cd /tmp
 
 ##shadow-tls
 RUN wget  -O /usr/bin/shadow-tls https://github.com/ihciah/shadow-tls/releases/latest/download/shadow-tls-x86_64-unknown-linux-musl  && chmod +x /usr/bin/shadow-tls
-RUN shadow-tls --help
+RUN set -x && shadow-tls --help
 
 #ss 
 RUN TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/shadowsocks-rust/releases/latest | grep tag_name | cut -d '"' -f4)  \
   && wget -O shadowsocks.zip https://github.com/shadowsocks/shadowsocks-rust/releases/download/$TAG/shadowsocks-$TAG.x86_64-unknown-linux-gnu.tar.xz \
   && tar xvf shadowsocks.zip \
   && mv ssserver /usr/bin/ssserver
-RUN ssserver --help
+RUN set -x && ssserver --help
 
 #snell 
 ENV SNELL_URL=https://dl.nssurge.com/snell/snell-server-v4.1.1-linux-amd64.zip
