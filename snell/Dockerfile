@@ -7,7 +7,7 @@ FROM frolvlad/alpine-glibc  AS builder
 LABEL maintainer="metowolf <i@i-meto.com>"
 
 
-RUN set -x  && apk add libstdc++6 libstdc++
+#RUN set -x  && apk add libstdc++6 libstdc++
 
 #RUN set -x \
 #   && apk add --no-cache build-base cmake llvm15-dev clang15-libclang clang15 rust-bindgen  unzip dumb-init  wget
