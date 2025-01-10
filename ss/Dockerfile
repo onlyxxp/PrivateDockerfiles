@@ -48,7 +48,7 @@ RUN cd /tmp && \
 #FROM debian:bullseye-slim AS ss-server-v2ray
 FROM frolvlad/alpine-glibc AS ss-server-v2ray
 
-apk add --no-cache libstdc++
+RUN apk add --no-cache libstdc++
 
 COPY --from=builder /user/local/temp-build/* /usr/bin/
 
