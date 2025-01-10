@@ -27,14 +27,8 @@ RUN case "$TARGETARCH" in \
 RUN /usr/bin/snell-server --help
 
 ################ss ###############
-RUN case "$TARGETARCH" in \
-       "amd64") SNELL_ARCH="x86_64" ;; \
-       "arm64") SNELL_ARCH="aarch64" ;; \
-       *) echo "Unsupported architecture: $TARGETARCH" && exit 1 ;; \
-     esac \
-  \
-  && TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/shadowsocks-rust/releases/latest | grep tag_name | cut -d '"' -f4)  \
-  && wget -O shadowsocks.zip https://github.com/shadowsocks/shadowsocks-rust/releases/download/$TAG/shadowsocks-$TAG.$SNELL_ARCH-unknown-linux-gnu.tar.xz \
+RUN TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/shadowsocks-rust/releases/latest | grep tag_name | cut -d '"' -f4)  \
+  && wget -O shadowsocks.zip https://github.com/shadowsocks/shadowsocks-rust/releases/download/$TAG/shadowsocks-$TAG.x86_64-unknown-linux-gnu.tar.xz \
   && tar xvf shadowsocks.zip \
   && mv ssserver /usr/bin/ 
 
