@@ -14,8 +14,6 @@ LABEL maintainer="metowolf <i@i-meto.com>"
 #RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
 #RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.35-r1/glibc-2.35-r1.apk
 
-FROM alpine:3.20
-
 ENV LANG=C.UTF-8
 
 # NOTE: Glibc 2.35 package is broken: https://github.com/sgerrand/alpine-pkg-glibc/issues/176, so we stick to 2.34 for now
