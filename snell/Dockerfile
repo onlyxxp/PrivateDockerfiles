@@ -60,15 +60,14 @@ ARG SNELL_VERSION=4.1.1
 ENV SNELL_URL=https://dl.nssurge.com/snell/snell-server-v4.1.1-linux-amd64.zip
 RUN /bin/sh -c wget --no-check-certificate -O snell.zip $SNELL_URL && 	unzip snell.zip && 	rm -f snell.zip && 	chmod +x snell-server && 	mv snell-server /usr/bin/  # buildkit
 
-##snell 
-#RUN cd /tmp
-#RUN wget -O snell-server.zip https://dl.nssurge.com/snell/snell-server-v$SNELL_VERSION-linux-amd64.zip 
-#RUN unzip snell-server.zip 
-#RUN ls -l
-#RUN pwd
-#RUN  mv /tmp/snell-server /user/bin/snell-server
+#snell 
+RUN wget --no-check-certificate -O snell-server.zip $SNELL_URL
+RUN unzip snell-server.zip && 	rm -f snell-server.zip && 	chmod +x snell-server
+RUN ls -l
+RUN pwd
+RUN  mv snell-server /user/bin/
 
-#RUN /user/local/bin/snell-server --help
+RUN snell-server --help
 
 # 添加默认环境变量
 ENV PSK=uYQwNqZbaIOMiZ6Zni8v5x0M09Y8bSK \
