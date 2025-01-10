@@ -59,4 +59,4 @@ ENV SS_LISTEN=8388 \
     SS_TIMEOUT=600
 
 ENTRYPOINT [ "entrypoint.sh" ]
-CMD [ "ssserver", "--log-without-time", "-a", "nobody", "-c", "/etc/shadowsocks-rust/config.json" ]
+CMD [ "echo", "hello!" ]
