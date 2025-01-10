@@ -65,7 +65,7 @@ RUN unzip snell-server.zip && 	rm -f snell-server.zip && 	chmod +x snell-server
 RUN ./snell-server --help
 RUN ls -l
 RUN pwd
-RUN  mv snell-server /user/bin/
+RUN  mv snell-server /usr/bin/
 
 RUN snell-server --help
 
