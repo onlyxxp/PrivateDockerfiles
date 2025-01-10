@@ -25,11 +25,11 @@ echo '{
 }' > /etc/shadowsocks-rust/config.json
 cat /etc/shadowsocks-rust/config.json
 echo ":::entrypoint end:::"
-exec "$@"
+
 #REAL CMD
 ssserver --log-without-time -a nobody -c /etc/shadowsocks-rust/config.json
 
-
+#exec "$@"
 
 
 
