@@ -27,9 +27,9 @@ RUN wget --no-check-certificate -O snell-server.zip $SNELL_URL && unzip snell-se
 RUN snell-server --help
 
 ##shadow-tls
-#RUN wget  -O /usr/bin/shadow-tls https://github.com/ihciah/shadow-tls/releases/latest/download/shadow-tls-x86_64-unknown-linux-musl  && chmod +x /usr/bin/shadow-tls
+RUN wget  -O /usr/bin/shadow-tls https://github.com/ihciah/shadow-tls/releases/latest/download/shadow-tls-x86_64-unknown-linux-musl  && chmod +x /usr/bin/shadow-tls
    
-#RUN shadow-tls --help
+RUN shadow-tls --help
 
 #ss 
 RUN TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/shadowsocks-rust/releases/latest | grep tag_name | cut -d '"' -f4)  \
@@ -45,6 +45,7 @@ RUN rm -rf /tmp/*
 FROM zyallday/snell-server:v4
 COPY --from=builder /usr/bin/snell-server /usr/bin/
 COPY --from=builder /usr/bin/ssserver /usr/bin/
+COPY --from=builder /usr/bin/shadow-tls /usr/bin/
 
 
 
