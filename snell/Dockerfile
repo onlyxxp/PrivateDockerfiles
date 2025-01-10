@@ -90,7 +90,7 @@ RUN rm -rf /tmp/*
 
 
 #FROM zyallday/snell-server:v4
-FROM FROM frolvlad/alpine-glibc
+FROM frolvlad/alpine-glibc
 COPY --from=builder /usr/bin/snell-server /usr/bin/
 COPY --from=builder /usr/bin/ssserver /usr/bin/
 COPY --from=builder /usr/bin/shadow-tls /usr/bin/
