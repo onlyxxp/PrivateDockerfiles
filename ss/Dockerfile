@@ -35,7 +35,7 @@ RUN case "$TARGETARCH" in \
        *) echo "Unsupported architecture: $TARGETARCH" && exit 1 ;; \
      esac \
   \
-  TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/shadowsocks-rust/releases/latest | grep tag_name | cut -d '"' -f4) && \
+  && TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/shadowsocks-rust/releases/latest | grep tag_name | cut -d '"' -f4)  \
   && wget -O shadowsocks.zip https://github.com/shadowsocks/shadowsocks-rust/releases/download/$TAG/shadowsocks-$TAG.$SNELL_ARCH-unknown-linux-gnu.tar.xz \
   && tar xvf shadowsocks.zip \
   && mv ssserver /usr/bin/ 
