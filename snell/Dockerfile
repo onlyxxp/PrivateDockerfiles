@@ -15,12 +15,12 @@ ARG VERSION=1.0
 ARG SNELL_VERSION=4.1.1
 
 ##snell 
-RUN mkdir -p /user/local/bin/
+RUN cd /tmp
 RUN wget -O snell-server.zip https://dl.nssurge.com/snell/snell-server-v$SNELL_VERSION-linux-amd64.zip 
 RUN  unzip snell-server.zip 
 RUN ls -l
 RUN pwd
-RUN  mv /snell-server /user/bin/snell-server
+RUN  mv /tmp/snell-server /user/bin/snell-server
 
 RUN /user/local/bin/snell-server --help
 
