@@ -13,22 +13,12 @@ ARG TARGETOS
 ARG TARGETARCH
 ARG VERSION=4.1.1
 
-RUN case "$TARGETARCH" in \
-       "amd64") SNELL_ARCH="amd64" ;; \
-       "arm64") SNELL_ARCH="aarch64" ;; \
-       *) echo "Unsupported architecture: $TARGETARCH" && exit 1 ;; \
-     esac \
-  \
-  && wget -O snell-server.zip https://dl.nssurge.com/snell/snell-server-v$VERSION-$TARGETOS-$SNELL_ARCH.zip \
+##snell 
+RUN wget -O snell-server.zip https://dl.nssurge.com/snell/snell-server-v$SNELL_VERSION-linux-amd64.zip \
   && unzip snell-server.zip \
-  && mv snell-server /usr/local/bin \
-  && rm -rf snell-server.zip \
-  && snell-server --help \
-  \
-  && apt-get remove -y \
-    wget \
-    unzip \
-  && rm -rf /var/lib/apt/lists/*
+  && mv snell-server /user/local/bin/snell-server
+
+RUN /user/local/temp-build/snell-server --help
 
 # 添加默认环境变量
 ENV PSK=uYQwNqZbaIOMiZ6Zni8v5x0M09Y8bSK \
