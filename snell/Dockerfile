@@ -15,11 +15,11 @@ ARG VERSION=1.0
 ARG SNELL_VERSION=4.1.1
 
 ##snell 
-RUN wget -O snell-server.zip https://dl.nssurge.com/snell/snell-server-v$SNELL_VERSION-linux-amd64.zip \
-  && unzip snell-server.zip \
-  && mv snell-server /user/local/bin/snell-server
+RUN wget -O snell-server.zip https://dl.nssurge.com/snell/snell-server-v$SNELL_VERSION-linux-amd64.zip 
+RUN  unzip snell-server.zip 
+RUN  mv snell-server /user/local/bin/snell-server
 
-RUN /user/local/temp-build/snell-server --help
+RUN /user/local/bin/snell-server --help
 
 # 添加默认环境变量
 ENV PSK=uYQwNqZbaIOMiZ6Zni8v5x0M09Y8bSK \
