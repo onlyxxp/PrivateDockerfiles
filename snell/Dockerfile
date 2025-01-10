@@ -25,8 +25,8 @@ RUN wget --no-check-certificate -O snell-server.zip $SNELL_URL && unzip snell-se
 RUN snell-server --help
 
 ##shadow-tls
-RUN wget  -O /user/bin/shadow-tls https://github.com/ihciah/shadow-tls/releases/latest/download/shadow-tls-x86_64-unknown-linux-musl \
-    && chmod +x /user/bin/shadow-tls
+RUN wget  -O /usr/bin/shadow-tls https://github.com/ihciah/shadow-tls/releases/latest/download/shadow-tls-x86_64-unknown-linux-musl \
+    && chmod +x /usr/bin/shadow-tls
 RUN shadow-tls --help
 
 
