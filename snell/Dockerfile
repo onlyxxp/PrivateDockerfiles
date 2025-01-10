@@ -3,7 +3,7 @@
 #FROM --platform=$BUILDPLATFORM rust:.20 AS builder
 #FROM zyallday/snell-server:v4  AS builder
 #FROM alpine:3.20
-FROM frolvlad/alpine-glibc:alpine-3.19_glibc-2.34
+FROM frolvlad/alpine-glibc:alpine-3.19_glibc-2.34   AS builder
 LABEL maintainer="metowolf <i@i-meto.com>"
 
 ENV LANG=C.UTF-8
