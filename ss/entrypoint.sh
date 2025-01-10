@@ -7,7 +7,7 @@ echo ":::entrypoint begin:::"
 
 # 添加默认环境变量
 export PSK=uYQwNqZbaIOMiZ6Zni8v5x0M09Y8bSK
-export LISTEN=9000
+export SNELL_LISTEN=9000
 # 初始化snell config
 echo "[snell-server]
 listen = 0.0.0.0:$SNELL_LISTEN
