@@ -1,4 +1,5 @@
-FROM --platform=$BUILDPLATFORM debian:sid-slim AS builder
+FROM --platform=$BUILDPLATFORM debian:bullseye-slim AS builder
+#bullseye-slim
 LABEL maintainer="debian <i@i-debian.com>"
 
 ARG TARGETOS
@@ -42,7 +43,7 @@ RUN cd /tmp && \
 
 
 ################ pack clean image ###############
-FROM debian:sid-slim AS ss-server-v2ray
+FROM debian:bullseye-slim AS ss-server-v2ray
 
 COPY --from=builder /user/local/temp-build/* /usr/bin/
 
