@@ -3,7 +3,7 @@
 #FROM --platform=$BUILDPLATFORM rust:.20 AS builder
 #FROM zyallday/snell-server:v4  AS builder
 #FROM alpine:3.20
-FROM frolvlad/alpine-glibc
+FROM frolvlad/alpine-glibc:alpine-3.19_glibc-2.34
 LABEL maintainer="metowolf <i@i-meto.com>"
 
 ENV LANG=C.UTF-8
@@ -44,7 +44,7 @@ RUN rm -rf /tmp/*
 
 
 #FROM zyallday/snell-server:v4
-FROM frolvlad/alpine-glibc
+FROM frolvlad/alpine-glibc:alpine-3.19_glibc-2.34
 COPY --from=builder /usr/bin/snell-server /usr/bin/
 COPY --from=builder /usr/bin/ssserver /usr/bin/
 COPY --from=builder /usr/bin/shadow-tls /usr/bin/
