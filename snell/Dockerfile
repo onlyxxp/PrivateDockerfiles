@@ -78,7 +78,8 @@ ENV PSK=uYQwNqZbaIOMiZ6Zni8v5x0M09Y8bSK \
 # shadow_tls
 ENV SHADOW_PORT=1010 \
     SHADOW_PWD=JsJeWtjiUyJ5ye \
-    SHADOW_HOST=publicassets.cdn-apple.com
+    SHADOW_HOST=publicassets.cdn-apple.com \
+    MONOIO_FORCE_LEGACY_DRIVER=1
 # SS
 ENV SERVER=0.0.0.0 \
     SERVER_PORT=8388 \
