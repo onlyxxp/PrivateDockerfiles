@@ -24,6 +24,10 @@ ARG SNELL_VERSION=4.0.1
 RUN set -x \
     && apk add --no-cache xz
 
+#snell 
+ENV SNELL_URL=https://dl.nssurge.com/snell/snell-server-v4.1.1-linux-amd64.zip
+RUN wget --no-check-certificate -O snell-server.zip $SNELL_URL && unzip snell-server.zip && 	rm -f snell-server.zip && 	chmod +x snell-server  && mv snell-server /usr/bin/
+#RUN set -x && snell-server --help
 
 #ss 
 RUN TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/shadowsocks-rust/releases/latest | grep tag_name | cut -d '"' -f4)  \
@@ -33,11 +37,14 @@ RUN TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/shadowsocks-rust/re
   && ls -l /usr/bin/ssserver
 #RUN set -x && ssserver --help
 
-#snell 
-ENV SNELL_URL=https://dl.nssurge.com/snell/snell-server-v4.1.1-linux-amd64.zip
-RUN wget --no-check-certificate -O snell-server.zip $SNELL_URL && unzip snell-server.zip && 	rm -f snell-server.zip && 	chmod +x snell-server  && mv snell-server /usr/bin/
-#RUN set -x && snell-server --help
-
+##v2ray plugin 
+RUN cd /tmp && \
+    TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/v2ray-plugin/releases/latest | grep tag_name | cut -d '"' -f4) && \
+    wget https://github.com/shadowsocks/v2ray-plugin/releases/download/$TAG/v2ray-plugin-linux-amd64-$TAG.tar.gz && \
+    tar xf *.gz && \
+    mv v2ray-plugin_linux_amd64 /usr/bin/v2ray-plugin && \
+    chmod +x /usr/bin/v2ray-plugin  && \
+    /usr/bin/v2ray-plugin -version
 
 
 #FROM alpine:3.21 AS snell
@@ -52,6 +59,7 @@ RUN apk add --update --no-cache libstdc++
 
 COPY --from=builder /usr/bin/snell-server /usr/bin/
 COPY --from=builder /usr/bin/ssserver /usr/bin/
+COPY --from=builder /usr/bin/v2ray-plugin /usr/bin/
 
 COPY snell-server.conf /etc/snell/snell-server.conf
 COPY config.json /etc/shadowsocks-rust/
