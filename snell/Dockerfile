@@ -1,10 +1,10 @@
 #FROM debian:bullseye-slim  AS builder
 #FROM --platform=$BUILDPLATFORM rust:.20 AS builder
 #FROM zyallday/snell-server:v4  AS builder
-#FROM alpine:3.20   AS builder
+FROM alpine:3.20   AS builder
 #FROM --platform=$BUILDPLATFORM alpine:3.21 AS builder
 #FROM frolvlad/alpine-glibc  AS builder
-FROM frolvlad/alpine-glibc:alpine-3.19_glibc-2.34 AS builder
+#FROM frolvlad/alpine-glibc:alpine-3.19_glibc-2.34 AS builder
 
 LABEL maintainer="metowolf <i@i-meto.com>"
 
@@ -36,12 +36,13 @@ RUN wget --no-check-certificate -O snell-server.zip $SNELL_URL && unzip snell-se
 
 
 
-#FROM alpine:3.21 AS snell
+FROM alpine:3.21 AS snell
 #FROM alpine:3.20
 #FROM zyallday/snell-server:v4
 #FROM frolvlad/alpine-glibc
-FROM frolvlad/alpine-glibc:alpine-3.19_glibc-2.34  AS snell
+#FROM frolvlad/alpine-glibc:alpine-3.19_glibc-2.34  AS snell
 
+apk add --no-cache gcompat
 
 COPY --from=builder /usr/bin/snell-server /usr/bin/
 COPY --from=builder /usr/bin/ssserver /usr/bin/
