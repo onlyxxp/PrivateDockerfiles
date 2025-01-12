@@ -1,19 +1,23 @@
+FROM --platform=$BUILDPLATFORM tonistiigi/xx AS xx
 #FROM debian:bullseye-slim  AS builder
-#FROM --platform=$BUILDPLATFORM rust:.20 AS builder
 #FROM zyallday/snell-server:v4  AS builder
 #FROM alpine:3.20   AS builder
 #FROM --platform=$BUILDPLATFORM alpine:3.21 AS builder
 FROM frolvlad/alpine-glibc:alpine-3.16 AS builder
 #FROM frolvlad/alpine-glibc  AS builder
-#FROM frolvlad/alpine-glibc:alpine-3.19_glibc-2.34 AS builder
 
-LABEL maintainer="metowolf <i@i-meto.com>"
+COPY --from=xx / /
+# export TARGETPLATFORM (or other TARGET*)
+ARG TARGETPLATFORM
+# you can now call xx-* commands
+RUN xx-info env
 
 
 ARG TARGETOS
 ARG TARGETARCH
 ARG VERSION=1.1
 ARG SNELL_VERSION=4.0.1
+
 
 
 
