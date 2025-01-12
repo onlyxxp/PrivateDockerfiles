@@ -50,7 +50,7 @@ COPY config.json /etc/shadowsocks-rust/
 COPY entrypoint.sh  /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 
-#RUN set -x && ls -l /usr/bin/ssserver && /usr/bin/ssserver --help
+RUN set -x && ls -l /usr/bin/ssserver && /usr/bin/ssserver --help
 
 # 添加默认环境变量
 ENV TZ=Asia/Shanghai
