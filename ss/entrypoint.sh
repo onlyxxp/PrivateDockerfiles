@@ -1,7 +1,7 @@
 #!/bin/sh
 # vim:sw=4:ts=4:et
 
-echo ":::entrypoint begin:::"
+echo "\033[32m :::entrypoint begin::: \033[0m"
 
 # 初始化snell config
 # dns = 1.1.1.1, 8.8.8.8, 2001:4860:4860::8888
@@ -34,7 +34,7 @@ echo '{
     "plugin_opts" : "'"$PLUGIN_OPTS"'"
 }' > /etc/shadowsocks-rust/config.json
 cat /etc/shadowsocks-rust/config.json
-echo ":::entrypoint end:::"
+echo "\033[32m  :::entrypoint end::: \033"
 #SSSS
 ssserver --log-without-time -a nobody -c /etc/shadowsocks-rust/config.json
 
