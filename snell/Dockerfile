@@ -46,6 +46,11 @@ RUN set -x && apk add --no-cache gcompat dumb-init
 COPY --from=builder /usr/bin/snell-server /usr/bin/
 COPY --from=builder /usr/bin/ssserver /usr/bin/
 
+COPY snell-server.conf /etc/snell/snell-server.conf
+COPY config.json /etc/shadowsocks-rust/
+COPY entrypoint.sh  /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+
 #RUN set -x && ls -l /usr/bin/ssserver && /usr/bin/ssserver --help
 
 # 添加默认环境变量
