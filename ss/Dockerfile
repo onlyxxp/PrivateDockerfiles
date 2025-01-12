@@ -1,12 +1,12 @@
 #FROM --platform=$BUILDPLATFORM debian:bullseye-slim AS builder
-#FROM --platform=$BUILDPLATFORM zyallday/snell-server:v4 AS builder
-FROM --platform=$BUILDPLATFORM onlyxxp/ss-server-v2ray:2.4:slim AS builder
+FROM --platform=$BUILDPLATFORM zyallday/snell-server:v4 AS builder
+#FROM --platform=$BUILDPLATFORM onlyxxp/ss-server-v2ray:2.4:slim AS builder
 #bullseye-slim
 LABEL maintainer="debian <i@i-debian.com>"
 
 ARG TARGETOS
 ARG TARGETARCH
-ARG VERSION=2.4:slim
+ARG VERSION=2.4-slim
 ARG SNELL_VERSION=4.1.1
 
 #RUN ldd --version
@@ -48,8 +48,8 @@ RUN cd /tmp && \
 
 ################ pack clean image ###############
 #FROM debian:bullseye-slim AS ss-server-v2ray
-#FROM zyallday/snell-server:v4 AS ss-server-v2ray
-FROM onlyxxp/ss-server-v2ray:2.4:slim AS ss-server-v2ray
+FROM zyallday/snell-server:v4 AS ss-server-v2ray
+#FROM onlyxxp/ss-server-v2ray:2.4-slim AS ss-server-v2ray
 #FROM scratch AS ss-server-v2ray
 
 COPY --from=builder /usr/local/temp-build/* /usr/bin/
