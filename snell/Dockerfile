@@ -19,28 +19,6 @@ ARG SNELL_VERSION=4.0.1
 RUN set -x \
     && apk add --no-cache build-base cmake llvm15-dev clang15-libclang clang15 rust-bindgen
 
-ENV GLIBC_VERSION 2.35-r1
-
-# Download and install glibc
-RUN apk add --update curl && \
-  curl -Lo /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub && \
-  curl -Lo glibc.apk "https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk" && \
-  curl -Lo glibc-bin.apk "https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-bin-${GLIBC_VERSION}.apk" && \
-  apk add --force-overwrite glibc-bin.apk glibc.apk && \
-  /usr/glibc-compat/sbin/ldconfig /lib /usr/glibc-compat/lib && \
-  echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf && \
-  apk del curl && \
-  rm -rf /var/cache/apk/* glibc.apk glibc-bin.apk
-
-#RUN set -x  && apk add libstdc++6 libstdc++
-
-#RUN set -x \
-#   && apk add --no-cache build-base cmake llvm15-dev clang15-libclang clang15 rust-bindgen  unzip dumb-init  wget
-# NOTE: Glibc 2.35 package is broken: https://github.com/sgerrand/alpine-pkg-glibc/issues/176, so we stick to 2.34 for now
-#RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
-#RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.35-r1/glibc-2.35-r1.apk
-
-RUN cd /tmp
 
 #ss 
 RUN TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/shadowsocks-rust/releases/latest | grep tag_name | cut -d '"' -f4)  \
