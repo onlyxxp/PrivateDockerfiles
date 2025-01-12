@@ -39,12 +39,6 @@ RUN apk add --update curl && \
 #RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
 #RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.35-r1/glibc-2.35-r1.apk
 
-
-ARG TARGETOS
-ARG TARGETARCH
-ARG VERSION=1.1
-ARG SNELL_VERSION=4.0.1
-
 RUN cd /tmp
 
 #ss 
