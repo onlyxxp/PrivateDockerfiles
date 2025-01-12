@@ -7,6 +7,10 @@ FROM --platform=$BUILDPLATFORM rust:alpine3.20 AS builder
 #FROM frolvlad/alpine-glibc:alpine-3.19_glibc-2.34 AS builder
 
 
+ARG TARGETOS
+ARG TARGETARCH
+ARG VERSION=1.1
+ARG SNELL_VERSION=4.0.1
 
 LABEL maintainer="metowolf <i@i-meto.com>"
 
