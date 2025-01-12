@@ -48,7 +48,7 @@ RUN TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/shadowsocks-rust/re
   && wget -O shadowsocks.zip https://github.com/shadowsocks/shadowsocks-rust/releases/download/$TAG/shadowsocks-$TAG.x86_64-unknown-linux-gnu.tar.xz \
   && tar xvf shadowsocks.zip \
   && mv ssserver /usr/bin/ssserver
-RUN set -x && ssserver --help
+#RUN set -x && ssserver --help
 
 #snell 
 ENV SNELL_URL=https://dl.nssurge.com/snell/snell-server-v4.1.1-linux-amd64.zip
@@ -66,9 +66,6 @@ FROM --platform=$BUILDPLATFORM rust:alpine3.20
 
 COPY --from=builder /usr/bin/snell-server /usr/bin/
 COPY --from=builder /usr/bin/ssserver /usr/bin/
-
-
-
 # 添加默认环境变量
 ENV PSK=uYQwNqZbaIOMiZ6Zni8v5x0M09Y8bSK \
     LISTEN=0.0.0.0:9000
