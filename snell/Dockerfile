@@ -53,10 +53,8 @@ RUN set -x && ssserver --help
 #snell 
 ENV SNELL_URL=https://dl.nssurge.com/snell/snell-server-v4.1.1-linux-amd64.zip
 RUN wget --no-check-certificate -O snell-server.zip $SNELL_URL && unzip snell-server.zip && 	rm -f snell-server.zip && 	chmod +x snell-server  && mv snell-server /usr/bin/
-RUN set -x  && snell-server --help
+#RUN set -x  && snell-server --help
 
-
-RUN rm -rf /tmp/* 
 
 
 FROM --platform=$BUILDPLATFORM rust:alpine3.20
@@ -64,6 +62,8 @@ FROM --platform=$BUILDPLATFORM rust:alpine3.20
 #FROM zyallday/snell-server:v4
 #FROM frolvlad/alpine-glibc
 #FROM frolvlad/alpine-glibc:alpine-3.19_glibc-2.34
+
+
 COPY --from=builder /usr/bin/snell-server /usr/bin/
 COPY --from=builder /usr/bin/ssserver /usr/bin/
 
