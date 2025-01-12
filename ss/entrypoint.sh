@@ -34,7 +34,7 @@ echo '{
     "plugin_opts" : "'"$PLUGIN_OPTS"'"
 }' > /etc/shadowsocks-rust/config.json
 cat /etc/shadowsocks-rust/config.json
-echo "\033[32m  :::entrypoint end::: \033"
+echo "\033[32m  :::entrypoint end::: \033[0m"
 #SSSS
 ssserver --log-without-time -a nobody -c /etc/shadowsocks-rust/config.json
 
