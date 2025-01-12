@@ -46,7 +46,7 @@ RUN set -x && apk add --no-cache gcompat
 COPY --from=builder /usr/bin/snell-server /usr/bin/
 COPY --from=builder /usr/bin/ssserver /usr/bin/
 
-RUN set -x && ls -l /usr/bin/ssserver && /usr/bin/ssserver --help
+#RUN set -x && ls -l /usr/bin/ssserver && /usr/bin/ssserver --help
 
 # 添加默认环境变量
 ENV PSK=uYQwNqZbaIOMiZ6Zni8v5x0M09Y8bSK \
