@@ -41,7 +41,7 @@ RUN wget --no-check-certificate -O snell-server.zip $SNELL_URL && unzip snell-se
 FROM frolvlad/alpine-glibc
 #FROM frolvlad/alpine-glibc:alpine-3.19_glibc-2.34  AS snell
 
-RUN set -x && apk add --no-cache gcompat dumb-init
+#RUN set -x && apk add --no-cache gcompat dumb-init
 
 COPY --from=builder /usr/bin/snell-server /usr/bin/
 COPY --from=builder /usr/bin/ssserver /usr/bin/
