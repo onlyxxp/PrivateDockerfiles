@@ -6,7 +6,7 @@ LABEL maintainer="debian <i@i-debian.com>"
 
 ARG TARGETOS
 ARG TARGETARCH
-ARG VERSION=2.4.4
+ARG VERSION=2.5
 
 #RUN ldd --version
 #RUN apt-get update && apt-get install -y wget unzip  dumb-init  xz-utils unzip tar
