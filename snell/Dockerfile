@@ -1,10 +1,6 @@
 FROM --platform=$BUILDPLATFORM tonistiigi/xx AS xx
-#FROM debian:bullseye-slim  AS builder
-#FROM zyallday/snell-server:v4  AS builder
-#FROM alpine:3.20   AS builder
-#FROM --platform=$BUILDPLATFORM alpine:3.21 AS builder
 FROM frolvlad/alpine-glibc:alpine-3.16 AS builder
-#FROM frolvlad/alpine-glibc  AS builder
+#FROM --platform=$BUILDPLATFORM alpine:3.21 AS builder
 
 COPY --from=xx / /
 # export TARGETPLATFORM (or other TARGET*)
@@ -18,11 +14,7 @@ ARG TARGETARCH
 ARG VERSION=1.1
 ARG SNELL_VERSION=4.0.1
 
-
-
-
-RUN set -x \
-    && apk add --no-cache xz
+RUN set -x && apk add --no-cache xz
 
 #snell 
 ENV SNELL_URL=https://dl.nssurge.com/snell/snell-server-v4.1.1-linux-amd64.zip
@@ -36,19 +28,14 @@ RUN wget  -O /usr/bin/shadow-tls https://github.com/ihciah/shadow-tls/releases/l
 #ss 
 RUN TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/shadowsocks-rust/releases/latest | grep tag_name | cut -d '"' -f4)  \
   && wget -O shadowsocks.zip https://github.com/shadowsocks/shadowsocks-rust/releases/download/$TAG/shadowsocks-$TAG.x86_64-unknown-linux-gnu.tar.xz \
-  && tar xvf shadowsocks.zip \
-  && mv -v ssserver /usr/bin/ssserver \
-  && ls -l /usr/bin/ssserver
+  && tar xvf shadowsocks.zip && mv -v ssserver /usr/bin/ssserver  && ls -l /usr/bin/ssserver
 #RUN set -x && ssserver --help
 
 ##v2ray plugin 
 RUN cd /tmp && \
     TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/v2ray-plugin/releases/latest | grep tag_name | cut -d '"' -f4) && \
-    wget https://github.com/shadowsocks/v2ray-plugin/releases/download/$TAG/v2ray-plugin-linux-amd64-$TAG.tar.gz && \
-    tar xf *.gz && \
-    mv v2ray-plugin_linux_amd64 /usr/bin/v2ray-plugin && \
-    chmod +x /usr/bin/v2ray-plugin  && \
-    /usr/bin/v2ray-plugin -version
+    wget https://github.com/shadowsocks/v2ray-plugin/releases/download/$TAG/v2ray-plugin-linux-amd64-$TAG.tar.gz && tar xf *.gz && \
+    mv v2ray-plugin_linux_amd64 /usr/bin/v2ray-plugin && chmod +x /usr/bin/v2ray-plugin  && /usr/bin/v2ray-plugin -version
 
 
 #FROM zyallday/snell-server:v4
