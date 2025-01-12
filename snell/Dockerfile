@@ -32,7 +32,7 @@ RUN TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/shadowsocks-rust/re
 #snell 
 ENV SNELL_URL=https://dl.nssurge.com/snell/snell-server-v4.1.1-linux-amd64.zip
 RUN wget --no-check-certificate -O snell-server.zip $SNELL_URL && unzip snell-server.zip && 	rm -f snell-server.zip && 	chmod +x snell-server  && mv snell-server /usr/bin/
-#RUN set -x  && snell-server --help
+#RUN set -x && snell-server --help
 
 
 
