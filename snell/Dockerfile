@@ -34,7 +34,7 @@ RUN wget --no-check-certificate -O snell-server.zip $SNELL_URL && unzip snell-se
 
 
 
-FROM alpine3.21 as snell
+FROM alpine:3.21 AS snell
 #FROM alpine:3.20
 #FROM zyallday/snell-server:v4
 #FROM frolvlad/alpine-glibc
