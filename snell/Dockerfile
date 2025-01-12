@@ -61,7 +61,7 @@ RUN wget --no-check-certificate -O snell-server.zip $SNELL_URL && unzip snell-se
 
 
 
-FROM --platform=$BUILDPLATFORM rust:alpine3.20
+FROM rust:alpine3.20
 #FROM alpine:3.20
 #FROM zyallday/snell-server:v4
 #FROM frolvlad/alpine-glibc
