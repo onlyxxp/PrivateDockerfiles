@@ -7,7 +7,6 @@ LABEL maintainer="debian <i@i-debian.com>"
 ARG TARGETOS
 ARG TARGETARCH
 ARG VERSION=2.4.4
-ARG SNELL_VERSION=4.1.1
 
 #RUN ldd --version
 #RUN apt-get update && apt-get install -y wget unzip  dumb-init  xz-utils unzip tar
@@ -18,7 +17,7 @@ RUN mkdir -p /usr/local/temp-build
 
 ################ download & install  ###############
 ##snell 
-RUN wget -O snell-server.zip https://dl.nssurge.com/snell/snell-server-v$SNELL_VERSION-linux-amd64.zip \
+RUN wget -O snell-server.zip https://dl.nssurge.com/snell/snell-server-v4.1.1-linux-amd64.zip \
   && unzip snell-server.zip \
   && mv snell-server /usr/local/temp-build/snell-server
 
