@@ -5,16 +5,12 @@ FROM frolvlad/alpine-glibc:alpine-3.16 AS builder
 COPY --from=xx / /
 # export TARGETPLATFORM (or other TARGET*)
 ARG TARGETPLATFORM
-# you can now call xx-* commands
-RUN xx-info env
-
-
 ARG TARGETOS
 ARG TARGETARCH
 ARG VERSION=1.1
 ARG SNELL_VERSION=4.0.1
 
-RUN set -x && apk add --no-cache xz
+RUN set -x &&  xx-info env && apk add --no-cache xz
 
 #snell 
 ENV SNELL_URL=https://dl.nssurge.com/snell/snell-server-v4.1.1-linux-amd64.zip
