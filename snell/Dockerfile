@@ -54,10 +54,21 @@ RUN chmod +x /usr/bin/entrypoint.sh
 #RUN set -x && ls -l /usr/bin/ssserver && /usr/bin/ssserver --help
 
 # 添加默认环境变量
-ENV PSK=uYQwNqZbaIOMiZ6Zni8v5x0M09Y8bSK \
-    LISTEN=0.0.0.0:9000
-
-VOLUME /etc/snell
 ENV TZ=Asia/Shanghai
-CMD [ "snell-server", "-c", "/etc/snell/snell-server.conf" ]
-ENTRYPOINT [ "dumb-init", "--", "/entrypoint.sh" ]
+# snell
+ENV PSK=uYQwNqZbaIOMiZ6Zni8v5x0M09Y8bSK \
+    SNELL_LISTEN=9000
+# shadow_tls
+ENV SHADOW_PORT=1010 \
+    SHADOW_PWD=JsJeWtjiUyJ5ye \
+    SHADOW_HOST=publicassets.cdn-apple.com
+# SS
+ENV SERVER=0.0.0.0 \
+    SERVER_PORT=8388 \
+    PWD=12aa.345g  \
+    METHOD=aes-128-gcm \
+    MOD=tcp_and_udp  \
+    TIMEOUT=600
+
+ENTRYPOINT [ "entrypoint.sh" ]
+CMD [ "echo", "hello!" ]
