@@ -12,7 +12,7 @@ psk = $PSK
 ipv6 = false" > /etc/snell/snell-server.conf
 cat /etc/snell/snell-server.conf
 # snell
-snell-server --loglevel=verbose -c /etc/snell/snell-server.conf&
+snell-server --loglevel=info -c /etc/snell/snell-server.conf&
 
 # shadow-tls
 if [ "${ENABLE_SHADOW_TLS}"  = "true" ]; then
