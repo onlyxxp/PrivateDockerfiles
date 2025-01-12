@@ -1,4 +1,5 @@
-FROM --platform=$BUILDPLATFORM debian:bullseye-slim AS builder
+#FROM --platform=$BUILDPLATFORM debian:bullseye-slim AS builder
+FROM --platform=$BUILDPLATFORM zyallday/snell-server:v4 AS builder
 #bullseye-slim
 LABEL maintainer="debian <i@i-debian.com>"
 
@@ -7,8 +8,10 @@ ARG TARGETARCH
 ARG VERSION=2.4.1
 ARG SNELL_VERSION=4.1.1
 
-RUN ldd --version
-RUN apt-get update && apt-get install -y wget unzip  dumb-init  xz-utils unzip tar
+#RUN ldd --version
+#RUN apt-get update && apt-get install -y wget unzip  dumb-init  xz-utils unzip tar
+RUN set -x \
+    && apk add --no-cache  wget unzip  dumb-init  xz-utils unzip tar
 
 RUN mkdir -p /usr/local/temp-build
 
@@ -43,7 +46,8 @@ RUN cd /tmp && \
 
 
 ################ pack clean image ###############
-FROM debian:bullseye-slim AS ss-server-v2ray
+#FROM debian:bullseye-slim AS ss-server-v2ray
+FROM zyallday/snell-server:v4 AS ss-server-v2ray
 #FROM scratch AS ss-server-v2ray
 
 COPY --from=builder /usr/local/temp-build/* /usr/bin/
