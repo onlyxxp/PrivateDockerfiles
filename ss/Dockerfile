@@ -11,7 +11,7 @@ ARG SNELL_VERSION=4.1.1
 #RUN ldd --version
 #RUN apt-get update && apt-get install -y wget unzip  dumb-init  xz-utils unzip tar
 RUN set -x \
-    && apk add --no-cache  wget unzip  dumb-init  xz-utils unzip tar
+    && apk add --no-cache  wget unzip  dumb-init  xz unzip tar
 
 RUN mkdir -p /usr/local/temp-build
 
