@@ -15,8 +15,12 @@ cat /etc/snell/snell-server.conf
 snell-server -c /etc/snell/snell-server.conf&
 
 # shadow-tls
-#
-# shadow-tls --fastopen --v3 server --listen ::0:$SHADOW_PORT --server 127.0.0.1:$SNELL_LISTEN --tls  $SHADOW_HOST --password $SHADOW_PWD &
+if [ -z "${ENABLE_SHADOW_TLS}" ]; then
+  echo "The environment ENABLE_SHADOW_TLS is not set. not start shadow tls"
+else
+  echo "The environment ENABLE_SHADOW_TLS is set to: ${ENABLE_SHADOW_TLS}"
+  shadow-tls --fastopen --v3 server --listen ::0:$SHADOW_PORT --server 127.0.0.1:$SNELL_LISTEN --tls  $SHADOW_HOST --password $SHADOW_PWD &
+fi
 
 # 初始化ss config
 echo '{
