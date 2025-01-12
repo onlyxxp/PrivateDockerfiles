@@ -17,7 +17,7 @@ ARG SNELL_VERSION=4.0.1
 
 
 RUN set -x \
-    && apk add --no-cache build-base cmake llvm15-dev clang15-libclang clang15 rust-bindgen
+    && apk add --no-cache xz
 
 
 #ss 
