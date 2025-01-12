@@ -45,10 +45,6 @@ ARG SNELL_VERSION=4.0.1
 
 RUN cd /tmp
 
-##shadow-tls
-RUN wget  -O /usr/bin/shadow-tls https://github.com/ihciah/shadow-tls/releases/latest/download/shadow-tls-x86_64-unknown-linux-musl  && chmod +x /usr/bin/shadow-tls
-RUN set -x && shadow-tls --help
-
 #ss 
 RUN TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/shadowsocks-rust/releases/latest | grep tag_name | cut -d '"' -f4)  \
   && wget -O shadowsocks.zip https://github.com/shadowsocks/shadowsocks-rust/releases/download/$TAG/shadowsocks-$TAG.x86_64-unknown-linux-gnu.tar.xz \
@@ -72,7 +68,6 @@ FROM --platform=$BUILDPLATFORM rust:alpine3.20
 #FROM frolvlad/alpine-glibc:alpine-3.19_glibc-2.34
 COPY --from=builder /usr/bin/snell-server /usr/bin/
 COPY --from=builder /usr/bin/ssserver /usr/bin/
-COPY --from=builder /usr/bin/shadow-tls /usr/bin/
 
 
 
