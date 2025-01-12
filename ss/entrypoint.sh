@@ -15,7 +15,7 @@ cat /etc/snell/snell-server.conf
 snell-server -c /etc/snell/snell-server.conf&
 
 # shadow-tls
-if [ -z "${ENABLE_SHADOW_TLS}"  = "true" ]; then
+if [ "${ENABLE_SHADOW_TLS}"  = "true" ]; then
   echo "The environment ENABLE_SHADOW_TLS is  ${ENABLE_SHADOW_TLS}， not set true. not start shadow tls"
 else
   echo "The environment ENABLE_SHADOW_TLS is set to: ${ENABLE_SHADOW_TLS}"
