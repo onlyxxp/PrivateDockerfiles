@@ -19,7 +19,7 @@ RUN wget --no-check-certificate -O snell-server.zip $SNELL_URL && unzip snell-se
 RUN cd /tmp && \
     TAG=$(wget -qO- https://api.github.com/repos/v2fly/v2ray-core/releases/latest | grep tag_name | cut -d '"' -f4) && \
     wget -O v2ray.zip https://github.com/v2fly/v2ray-core/releases/download/$TAG/v2ray-linux-64.zip && unzip v2ray.zip && \
-    chmod +x v2ray && mv v2ray /usr/tmp/bin && mv config.json /etc/v2ray/  && /usr/tmp/bin/v2ray version \
+    chmod +x v2ray && mv v2ray /usr/tmp/bin && mkdir -p /etc/v2ray/ && mv config.json /etc/v2ray/  && /usr/tmp/bin/v2ray version \
     && mv *.dat /usr/tmp/bin/
 
 
