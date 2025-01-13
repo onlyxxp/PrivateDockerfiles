@@ -5,7 +5,7 @@ COPY --from=xx / /
 
 # export TARGETPLATFORM (or other TARGET*)
 ARG TARGETPLATFORM
-ARG VERSION=1.1
+ARG VERSION=1.1.1
 
 RUN set -x &&  xx-info env && apk add --no-cache xz
 
@@ -14,6 +14,12 @@ ENV SNELL_URL=https://dl.nssurge.com/snell/snell-server-v4.1.1-linux-amd64.zip
 RUN wget --no-check-certificate -O snell-server.zip $SNELL_URL && unzip snell-server.zip && 	rm -f snell-server.zip && 	chmod +x snell-server  && mv snell-server /usr/bin/
 ##shadow-tls
 RUN wget  -O /usr/bin/shadow-tls https://github.com/ihciah/shadow-tls/releases/latest/download/shadow-tls-x86_64-unknown-linux-musl && chmod +x /usr/bin/shadow-tls
+
+##v2ray  
+RUN cd /tmp && \
+    TAG=$(wget -qO- https://api.github.com/repos/v2fly/v2ray-core/releases/latest | grep tag_name | cut -d '"' -f4) && \
+    wget v2ray.zip https://github.com/v2fly/v2ray-core/releases/download/$TAG/v2ray-linux-64.zip && unzip v2ray.zip && \
+    chmod +x v2ray && mv v2ray /usr/bin/ && chmod +x /usr/bin/v2ray-plugin && mv geosite.dat geoip.dat config.json /etc/v2ray/  && /usr/bin/v2ray -version
 
 
 #########################  pack image ########################
