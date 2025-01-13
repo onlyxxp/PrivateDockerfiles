@@ -7,20 +7,20 @@ COPY --from=xx / /
 ARG TARGETPLATFORM
 ARG VERSION=1.1.1
 
-RUN set -x &&  xx-info env && apk add --no-cache xz
+RUN set -x &&  xx-info env && apk add --no-cache xz  && mkdir -p /usr/tmp/bin
 
 #snell 
 ENV SNELL_URL=https://dl.nssurge.com/snell/snell-server-v4.1.1-linux-amd64.zip
-RUN wget --no-check-certificate -O snell-server.zip $SNELL_URL && unzip snell-server.zip && 	rm -f snell-server.zip && 	chmod +x snell-server  && mv snell-server /usr/bin/
+RUN wget --no-check-certificate -O snell-server.zip $SNELL_URL && unzip snell-server.zip && 	rm -f snell-server.zip && 	chmod +x snell-server  && mv snell-server /usr/tmp/bin/
 ##shadow-tls
-RUN wget  -O /usr/bin/shadow-tls https://github.com/ihciah/shadow-tls/releases/latest/download/shadow-tls-x86_64-unknown-linux-musl && chmod +x /usr/bin/shadow-tls
+#RUN wget  -O /usr/tmp/bin/shadow-tls https://github.com/ihciah/shadow-tls/releases/latest/download/shadow-tls-x86_64-unknown-linux-musl && chmod +x /usr/tmp/bin/shadow-tls
 
 ##v2ray  
 RUN cd /tmp && \
     TAG=$(wget -qO- https://api.github.com/repos/v2fly/v2ray-core/releases/latest | grep tag_name | cut -d '"' -f4) && \
     wget -O v2ray.zip https://github.com/v2fly/v2ray-core/releases/download/$TAG/v2ray-linux-64.zip && unzip v2ray.zip && \
-    chmod +x v2ray && mv v2ray /usr/bin/ && mkdir -p /etc/v2ray/ && mv config.json /etc/v2ray/  && /usr/bin/v2ray version 
-    # && mv *.dat /etc/v2ray/ 
+    chmod +x v2ray && mv v2ray /usr/tmp/bin && mv config.json /etc/v2ray/  && /usr/tmp/bin/v2ray version \
+    && mv *.dat /usr/tmp/bin/
 
 
 #########################  pack image ########################
@@ -28,10 +28,8 @@ FROM frolvlad/alpine-glibc:alpine-3.16
 
 RUN apk add --update --no-cache libstdc++ && mkdir -p /etc/v2ray/
 
-COPY --from=builder /usr/bin/snell-server /usr/bin/
-COPY --from=builder /usr/bin/shadow-tls   /usr/bin/
-COPY --from=builder /usr/bin/v2ray        /usr/bin/
-COPY --from=builder /etc/v2ray/           /etc/v2ray/
+COPY --from=builder /usr/tmp/bin/*     /usr/bin/
+COPY --from=builder /etc/v2ray/        /etc/v2ray/
 
 COPY snell-server.conf /etc/snell/snell-server.conf
 COPY entrypoint.sh  /usr/bin/
