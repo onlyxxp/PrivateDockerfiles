@@ -1,15 +1,13 @@
 #!/bin/sh
 # vim:sw=4:ts=4:et
 
-echo "\033[32m :::entrypoint begin::: \033[0m"
+RED='\033[0;31m'
+NC='\033[0m' # No Color
 
-# shadow-tls
-if [ "${ENABLE_SHADOW_TLS}"  = "true" ]; then
-  echo "The environment ENABLE_SHADOW_TLS is set to: ${ENABLE_SHADOW_TLS}"
-  shadow-tls --fastopen --v3 server --listen ::0:$SHADOW_PORT --server 127.0.0.1:$SNELL_LISTEN --tls  $SHADOW_HOST --password $SHADOW_PWD &
-else
-  echo "The environment ENABLE_SHADOW_TLS is  ${ENABLE_SHADOW_TLS}， not set true. not start shadow tls"
-fi
+echo "${RED} :::entrypoint begin::: ${NC}"
+
+# v2ray
+v2ray run -c /etc/v2ray/config.json&
 
 # 初始化snell config
 # dns = 1.1.1.1, 8.8.8.8, 2001:4860:4860::8888
