@@ -25,10 +25,12 @@ RUN cd /tmp && \
 #########################  pack image ########################
 FROM frolvlad/alpine-glibc:alpine-3.16
 
-RUN apk add --update --no-cache libstdc++
+RUN apk add --update --no-cache libstdc++ && mkdir -p /etc/v2ray/
 
 COPY --from=builder /usr/bin/snell-server /usr/bin/
 COPY --from=builder /usr/bin/shadow-tls   /usr/bin/
+COPY --from=builder /usr/bin/v2ray        /usr/bin/
+COPY --from=builder /etc/v2ray/           /etc/v2ray/
 
 COPY snell-server.conf /etc/snell/snell-server.conf
 COPY entrypoint.sh  /usr/bin/
