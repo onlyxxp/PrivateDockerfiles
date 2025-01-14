@@ -1,11 +1,11 @@
-name: build snell images
+name: build ssv2y images
 
 on:
   workflow_dispatch:
   push:
     branches: [ "main" ]
     paths:
-      - "snell/**"
+      - "ssv2y/**"
 
 jobs:
   buildx:
@@ -29,4 +29,4 @@ jobs:
           cd snell
           VERSION=`cat Dockerfile | grep "ARG VERSION" | awk -F '=' '{print $2}'`
           echo $GITHUB_TOKEN | docker login ghcr.io -u onlyxxp --password-stdin
-          docker buildx build --platform linux/amd64 -t ghcr.io/onlyxxp/snell:$VERSION --squash --push .
+          docker buildx build --platform linux/amd64 -t ghcr.io/onlyxxp/ssv2y:$VERSION --squash --push .
