@@ -19,8 +19,8 @@ RUN wget --no-check-certificate -O snell-server.zip $SNELL_URL && unzip snell-se
 RUN cd /tmp && \
     TAG=$(wget -qO- https://api.github.com/repos/v2fly/v2ray-core/releases/latest | grep tag_name | cut -d '"' -f4) && \
     wget -O v2ray.zip https://github.com/v2fly/v2ray-core/releases/download/$TAG/v2ray-linux-64.zip && unzip v2ray.zip && \
-    chmod +x v2ray && mv v2ray /usr/tmp/bin && mkdir -p /etc/v2ray/ && mv config.json /etc/v2ray/  && /usr/tmp/bin/v2ray version \
-    && mv *.dat /usr/tmp/bin/
+    chmod +x v2ray && mv v2ray /usr/tmp/bin && mkdir -p /etc/v2ray/ && mv config.json /etc/v2ray/  && /usr/tmp/bin/v2ray version 
+   # && mv *.dat /usr/tmp/bin/
 
 RUN apk add tzdata \
     && echo "Asia/Shanghai" > /etc/timezone \
@@ -40,7 +40,6 @@ RUN chmod +x /usr/bin/entrypoint.sh
 
 # dry run
 RUN set -x && ls -l /usr/bin/snell-server && snell-server --help
-RUN rm /var/cache/apk/*
 
 # 添加默认环境变量
 ENV PSK=uYQwNqZbaIOMiZ6Zni8v5x0M09Y8bSK SNELL_LISTEN=9000
