@@ -26,7 +26,7 @@ RUN cd /tmp && \
 FROM frolvlad/alpine-glibc:alpine-3.16
 
 #stdc++
-RUN apk add --update --no-cache libstdc++ && mkdir -p /etc/v2ray/
+RUN apk add --update --no-cache libstdc++ curl && mkdir -p /etc/v2ray/
 #timezone
 RUN apk add tzdata && echo "Asia/Shanghai" > /etc/timezone && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime 
 
