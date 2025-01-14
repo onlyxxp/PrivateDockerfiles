@@ -22,14 +22,13 @@ RUN cd /tmp && \
     chmod +x v2ray && mv v2ray /usr/tmp/bin && mkdir -p /etc/v2ray/ && mv config.json /etc/v2ray/  && /usr/tmp/bin/v2ray version 
    # && mv *.dat /usr/tmp/bin/
 
-RUN apk add tzdata \
-    && echo "Asia/Shanghai" > /etc/timezone \
-    && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime 
-
 #########################  pack image ########################
 FROM frolvlad/alpine-glibc:alpine-3.16
 
+#stdc++
 RUN apk add --update --no-cache libstdc++ && mkdir -p /etc/v2ray/
+#timezone
+RUN apk add tzdata && echo "Asia/Shanghai" > /etc/timezone && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime 
 
 COPY --from=builder /usr/tmp/bin/*     /usr/bin/
 COPY --from=builder /etc/v2ray/        /etc/v2ray/
