@@ -23,8 +23,8 @@ psk = $PSK
 ipv6 = false" > /etc/snell/snell-server.conf
 cat /etc/snell/snell-server.conf
 echo -e  "\033[32m  run snell v4 \033[0m"
-# snell
-snell-server --loglevel=info -c /etc/snell/snell-server.conf
+# snell v4
+snell-server --loglevel=info -c /etc/snell/snell-server.conf&
 
 
 # 初始化snell config
@@ -35,7 +35,7 @@ psk = $PSK
 ipv6 = false" > /etc/snell/snell-serverv3.conf
 cat /etc/snell/snell-serverv3.conf
 echo -e  "\033[32m  run snell v3 \033[0m"
-# snell
+# snell v3
 snell-server3 --loglevel=info -c /etc/snell/snell-serverv3.conf
 
 
