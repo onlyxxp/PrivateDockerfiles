@@ -5,7 +5,7 @@ COPY --from=xx / /
 
 # export TARGETPLATFORM (or other TARGET*)
 ARG TARGETPLATFORM
-ARG VERSION=1.1.2
+ARG VERSION=1.1.3
 
 RUN set -x &&  xx-info env && apk add --no-cache xz  && mkdir -p /usr/tmp/bin
 
