@@ -33,7 +33,8 @@ RUN apk add --no-cache tzdata && echo "Asia/Shanghai" > /etc/timezone && ln -sf 
 COPY --from=builder /usr/tmp/bin/*     /usr/bin/
 COPY --from=builder /etc/v2ray/        /etc/v2ray/
 
-COPY snell-server.conf /etc/snell/snell-server.conf
+COPY snell-server.conf /etc/snell/
+COPY config.json       /etc/v2ray/
 COPY entrypoint.sh  /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 
