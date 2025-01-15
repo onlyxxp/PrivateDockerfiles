@@ -1,7 +1,7 @@
 #!/bin/sh
 # vim:sw=4:ts=4:et
 
-RED='\033[0;31m'
+RED='\033[31m'
 NC='\033[0m' # No Color
 
 echo "${RED} :::entrypoint begin::: ${NC}"
