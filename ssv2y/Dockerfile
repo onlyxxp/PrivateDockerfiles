@@ -11,7 +11,7 @@ RUN set -x &&  xx-info env && apk add --no-cache xz  && mkdir -p /usr/tmp/bin
 
 #snell v3
 ENV SNELL_URL_V3=https://raw.githubusercontent.com/xOS/Others/master/snell/v3.0.1/snell-server-v3.0.1-linux-amd64.zip
-RUN wget --no-check-certificate -O snell-serverv3.zip $SNELL_URL && unzip snell-serverv3.zip && 	rm -f snell-serverv3.zip && 	chmod +x snell-server  && mv snell-server /usr/tmp/bin/snell-server3
+RUN wget --no-check-certificate -O snell-serverv3.zip $SNELL_URL_V3 && unzip snell-serverv3.zip && 	rm -f snell-serverv3.zip && 	chmod +x snell-server  && mv snell-server /usr/tmp/bin/snell-server3
 #snell v4
 ENV SNELL_URL=https://dl.nssurge.com/snell/snell-server-v4.1.1-linux-amd64.zip
 RUN wget --no-check-certificate -O snell-server.zip $SNELL_URL && unzip snell-server.zip && 	rm -f snell-server.zip && 	chmod +x snell-server  && mv snell-server /usr/tmp/bin/
