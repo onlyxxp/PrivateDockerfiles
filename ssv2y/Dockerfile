@@ -1,5 +1,5 @@
 FROM --platform=$BUILDPLATFORM tonistiigi/xx AS xx
-FROM frolvlad/alpine-glibc:alpine-3.16 AS builder
+FROM frolvlad/alpine-glibc:alpine-3.20 AS builder
 #FROM --platform=$BUILDPLATFORM alpine:3.21 AS builder
 COPY --from=xx / /
 
@@ -23,7 +23,7 @@ RUN cd /tmp && \
    # && mv *.dat /usr/tmp/bin/
 
 #########################  pack image ########################
-FROM frolvlad/alpine-glibc:alpine-3.16
+FROM frolvlad/alpine-glibc:alpine-3.20
 
 #stdc++
 RUN apk add --update --no-cache libstdc++ curl && mkdir -p /etc/v2ray/
