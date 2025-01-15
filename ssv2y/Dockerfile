@@ -12,8 +12,8 @@ RUN set -x &&  xx-info env && apk add --no-cache xz  && mkdir -p /usr/tmp/bin
 #snell 
 ENV SNELL_URL=https://dl.nssurge.com/snell/snell-server-v4.1.1-linux-amd64.zip
 RUN wget --no-check-certificate -O snell-server.zip $SNELL_URL && unzip snell-server.zip && 	rm -f snell-server.zip && 	chmod +x snell-server  && mv snell-server /usr/tmp/bin/
-##shadow-tls
-#RUN wget  -O /usr/tmp/bin/shadow-tls https://github.com/ihciah/shadow-tls/releases/latest/download/shadow-tls-x86_64-unknown-linux-musl && chmod +x /usr/tmp/bin/shadow-tls
+#shadow-tls
+RUN wget  -O /usr/tmp/bin/shadow-tls https://github.com/ihciah/shadow-tls/releases/latest/download/shadow-tls-x86_64-unknown-linux-musl && chmod +x /usr/tmp/bin/shadow-tls
 
 ##v2ray  
 RUN cd /tmp && \
