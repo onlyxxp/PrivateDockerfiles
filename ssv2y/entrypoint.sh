@@ -20,14 +20,24 @@ v2ray run -c /etc/v2ray/config.json&
 echo "[snell-server]
 listen = 0.0.0.0:$SNELL_LISTEN
 psk = $PSK
-
 ipv6 = false" > /etc/snell/snell-server.conf
 cat /etc/snell/snell-server.conf
-
-echo -e  "\033[32m  run snell \033[0m"
-
+echo -e  "\033[32m  run snell v4 \033[0m"
 # snell
 snell-server --loglevel=info -c /etc/snell/snell-server.conf
+
+
+# 初始化snell config
+# dns = 1.1.1.1, 8.8.8.8, 2001:4860:4860::8888
+echo "[snell-server]
+listen = 0.0.0.0:$SNELL_LISTEN_V3
+psk = $PSK
+ipv6 = false" > /etc/snell/snell-serverv3.conf
+cat /etc/snell/snell-serverv3.conf
+echo -e  "\033[32m  run snell v3 \033[0m"
+# snell
+snell-server3 --loglevel=info -c /etc/snell/snell-serverv3.conf
+
 
 
 #exec "$@"
