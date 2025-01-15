@@ -1,133 +1,31 @@
 {
-  "log": {
-      "loglevel": "warning"
-  },
-  "inbounds": [
-      {
-        "listen": "0.0.0.0",
-        "port": 1234,
-        "protocol": "shadowsocks",
-        "settings": {
-            "method": "chacha20-ietf-poly1305",
-            "password": "805c30ba-4261-42f9-bec0-2e83adebe3e5"
-        },
-        "streamSettings": {
-            "network": "tcp"
-        }
+    "log": {"loglevel":"warning"},
+    "inbounds": [
+        {// SS aes-128-gcm
+          "listen": "0.0.0.0",
+          "port": 1030,
+          "protocol": "shadowsocks",
+          "settings":{"method":"aes-128-gcm","password":"805c30ba-4261-42f9-bec0-2e83adebe3e5"},
+          "streamSettings":{"network":"tcp"}
       },
-      { // VLESS + WebSocket + TLS
-        "listen": "0.0.0.0",
-        "port": 32888,
-        "protocol": "vless",
-        "settings": {
-            "clients": [
-                {
-                    "id": "805c30ba-4261-42f9-bec0-2e83adebe3e5",             // ***VLESS的UUID
-                    "level": 1,
-                    "alterId": 0
-                }
-            ],
-            "decryption": "none"
-        },
-        "streamSettings": {
-            "network": "ws"         // ***
-        },
-        "sniffing": {
-            "enabled": true,
-            "destOverride": [
-                "http",
-                "tls"
-            ]
-        }
-    },
-    { // Vmess + WebSocket + TLS
-        "listen": "0.0.0.0",
-        "port": 32889,             // ***Vmess的内部端口
-        "protocol": "vmess",         // ***
-        "settings": {
-            "clients": [
-                {
-                    "id": "805c30ba-4261-42f9-bec0-2e83adebe3e5",             // ***Vmess的UUID
-                    "level": 1,
-                    "alterId": 0
-                }
-            ],
-            "decryption": "none"
-        },
-        "streamSettings": {
-            "network": "ws"         // ***
-        },
-        "sniffing": {
-            "enabled": true,
-            "destOverride": [
-                "http",
-                "tls"
-            ]
-        }
-    },
-    { // Vmess + TCP
-        "port": 32890,             // ***
-        "protocol": "vmess",         // ***
-        "settings": {
-            "clients": [
-                {
-                    "id": "805c30ba-4261-42f9-bec0-2e83adebe3e5",             // ***
-                    "level": 1,
-                    "alterId": 0
-                }
-            ],
-            "decryption": "none"
-        },
-        "streamSettings": {
-            "network": "tcp"         // ***
-        },
-        "sniffing": {
-            "enabled": true,
-            "destOverride": [
-                "http",
-                "tls"
-            ]
-        }
-    },
-    {   //vmess + ws
-      "listen": "0.0.0.0",
-      "port": 32891,
-      "protocol": "vmess",
-      "settings": {
-          "clients": [
-              {
-                  "id": "805c30ba-4261-42f9-bec0-2e83adebe3e5"
-              }
-          ]
-      },
-      "streamSettings": {
-          "network": "ws",
-          "security": "none"
-      }
-    }
-  ],
-  "outbounds": [
-      {
-          "protocol": "freedom",
-          "tag": "direct"
-      },
-      {
-          "protocol": "blackhole",
-          "tag": "block"
-      }
-  ],
-  "dns": {
-        "servers": [
-            "8.8.8.8",
-            "1.1.1.1",
-            "localhost"
-        ]
-  },
-  "transport": {
-        "kcpSettings": {
-            "uplinkCapacity": 100,
-            "downlinkCapacity": 100,
-            "congestion": true
-        }
-    }
-}
+       { // VLLLESS + WebSocket
+            "listen": "0.0.0.0",
+            "port": 1040,
+            "protocol": "vless",
+            "settings": {"clients":[{"id":"805c30ba-4261-42f9-bec0-2e83adebe3e5","level":1,"alterId":0}],"decryption":"none"},
+            "streamSettings": {"network":"ws"},
+            "sniffing":{"enabled":true,"destOverride":["http","tls"]}
+       },
+       { // Vmess + WebSocket 
+            "listen": "0.0.0.0",
+            "port": 1050,            
+            "protocol": "vmess",        
+            "settings":{"clients":[{"id":"805c30ba-4261-42f9-bec0-2e83adebe3e5","level":1,"alterId":0}],"decryption":"none"},
+            "streamSettings": {"network":"ws"},
+            "sniffing":{"enabled":true,"destOverride":["http","tls"]}
+       }
+    ],
+    "outbounds": [{"protocol":"freedom","tag":"direct"},{"protocol":"blackhole","tag":"block"}],
+    "dns": {"servers":["8.8.8.8","1.1.1.1","localhost"]},
+    "transport": { }
+  }
