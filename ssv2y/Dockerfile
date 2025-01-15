@@ -45,7 +45,7 @@ RUN chmod +x /usr/bin/entrypoint.sh
 RUN set -x && ls -l /usr/bin/snell-server && snell-server --help  && snell-server3 --help  && v2ray version 
 
 # 添加默认环境变量
-ENV PSK=uYQwNqZbaIOMiZ6Zni8v5x0M09Y8bSK SNELL_LISTEN=9000  SNELL_LISTEN_V3=90001
+ENV PSK=uYQwNqZbaIOMiZ6Zni8v5x0M09Y8bSK SNELL_LISTEN=9000  SNELL_LISTEN_V3=9001
 ENV SHADOW_PORT=1010    SHADOW_PWD=JsJeWtjiUyJ5ye   SHADOW_HOST=publicassets.cdn-apple.com   MONOIO_FORCE_LEGACY_DRIVER=1
 ENV SERVER=0.0.0.0 SERVER_PORT=8388 PWD=12aa.345g    METHOD=aes-128-gcm  MOD=tcp_and_udp  TIMEOUT=600
 
