@@ -20,8 +20,8 @@ RUN TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/shadowsocks-rust/re
   && tar xvf shadowsocks.zip && mv -v ssserver /usr/bin/ssserver  && ls -l /usr/bin/ssserver
 ##v2ray plugin 
 RUN cd /tmp && \
-    TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/v2ray-plugin/releases/latest | grep tag_name | cut -d '"' -f4) && \
-    wget https://github.com/shadowsocks/v2ray-plugin/releases/download/$TAG/v2ray-plugin-linux-amd64-$TAG.tar.gz && tar xf *.gz && \
+    TAG=$(wget -qO- https://api.github.com/repos/teddysun/v2ray-plugin/releases/latest | grep tag_name | cut -d '"' -f4) && \
+    wget https://github.com/teddysun/v2ray-plugin/releases/download/$TAG/v2ray-plugin-linux-amd64-$TAG.tar.gz && tar xf *.gz && \
     mv v2ray-plugin_linux_amd64 /usr/bin/v2ray-plugin && chmod +x /usr/bin/v2ray-plugin  && /usr/bin/v2ray-plugin -version
 
 
