@@ -1,4 +1,4 @@
-name: build ssv2y images
+name: build ssv3y images
 
 on:
   workflow_dispatch:
@@ -29,4 +29,4 @@ jobs:
           cd ssv2y
           VERSION=`cat Dockerfile | grep "ARG VERSION" | awk -F '=' '{print $2}'`
           echo $GITHUB_TOKEN | docker login ghcr.io -u onlyxxp --password-stdin
-          docker buildx build --platform linux/amd64 -t ghcr.io/onlyxxp/ssv2y:$VERSION --squash --push .
+          docker buildx build --platform linux/amd64 -t ghcr.io/onlyxxp/ssv3y:$VERSION --squash --push .
