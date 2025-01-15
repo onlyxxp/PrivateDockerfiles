@@ -45,7 +45,10 @@ RUN set -x && ls -l /usr/bin/snell-server && snell-server --help
 RUN set -x && ls -l /usr/bin/ssserver && /usr/bin/ssserver --help
 
 # 添加默认环境变量
-ENV TZ=Asia/Shanghai
+#ENV TZ=Asia/Shanghai
+#timezone
+RUN apk add --no-cache tzdata && echo "Asia/Shanghai" > /etc/timezone && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime 
+
 ENV PSK=uYQwNqZbaIOMiZ6Zni8v5x0M09Y8bSK SNELL_LISTEN=9000
 ENV SHADOW_PORT=1010    SHADOW_PWD=JsJeWtjiUyJ5ye   SHADOW_HOST=publicassets.cdn-apple.com   MONOIO_FORCE_LEGACY_DRIVER=1
 ENV SERVER=0.0.0.0 SERVER_PORT=8388 PWD=12aa.345g    METHOD=aes-128-gcm  MOD=tcp_and_udp  TIMEOUT=600
