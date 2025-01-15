@@ -42,7 +42,7 @@ COPY entrypoint.sh  /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 
 # dry run
-RUN set -x && ls -l /usr/bin/snell-server && snell-server --help
+RUN set -x && ls -l /usr/bin/snell-server && snell-server --help  && snell-server3 --help  && v2ray version 
 
 # 添加默认环境变量
 ENV PSK=uYQwNqZbaIOMiZ6Zni8v5x0M09Y8bSK SNELL_LISTEN=9000  SNELL_LISTEN_V3=90001
