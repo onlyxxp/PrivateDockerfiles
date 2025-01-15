@@ -12,6 +12,7 @@ else
 fi
 
 # v2ray
+echo -e  "\033[32m  run v2ray \033[0m"
 v2ray run -c /etc/v2ray/config.json&
 
 # 初始化snell config
@@ -22,10 +23,12 @@ psk = $PSK
 
 ipv6 = false" > /etc/snell/snell-server.conf
 cat /etc/snell/snell-server.conf
-# snell
-snell-server --loglevel=info -c /etc/snell/snell-server.conf&
 
-/bin/sh
+echo -e  "\033[32m  run snell \033[0m"
+
+# snell
+snell-server --loglevel=info -c /etc/snell/snell-server.conf
+
 
 #exec "$@"
 
