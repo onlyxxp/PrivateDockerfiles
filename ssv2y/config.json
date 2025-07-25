@@ -11,9 +11,9 @@
        { // Vmess + WebSocket 
             "listen": "0.0.0.0",
             "port": 1050,
-        	"protocol": "vmess",
-        	"settings": {"clients":[{"id":"805c30ba-4261-42f9-bec0-2e83adebe3e5","alterId":0}]},
-        	"streamSettings": {"network": "ws"}
+	        "protocol": "vmess",
+	        "settings": {"clients":[{"id":"b831381d-6324-4d53-ad4f-8cda48b30811","alterId":0, "security": "auto"}]},
+	        "streamSettings": {"network": "ws","wsSettings":{"path":"/hahai"}}
        },
        { // Vmess + mKCP 
             "listen": "0.0.0.0",
