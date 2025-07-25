@@ -23,7 +23,14 @@
             "settings":{"clients":[{"id":"805c30ba-4261-42f9-bec0-2e83adebe3e5","level":1,"alterId":0}],"decryption":"none"},
             "streamSettings": {"network":"ws"},
             "sniffing":{"enabled":true,"destOverride":["http","tls"]}
-       }
+       },
+       {  // SS-2022  
+            "listen": "0.0.0.0",
+            "port": 1060,
+            "protocol": "shadowsocks2022",
+            "settings":{"address":"127.0.0.1","port":20220,"method":"2022-blake3-aes-128-gcm","psk":"s2z9Q8EDDBBAB8B3UCxw","ipsk":["qQln3GlVCZiFDFS2JVNCw"]},
+            "streamSettings":{"network":"tcp"}
+       },
     ],
     "outbounds": [{"protocol":"freedom","tag":"direct"},{"protocol":"blackhole","tag":"block"}],
     "dns": {"servers":["8.8.8.8","1.1.1.1","localhost"]},
