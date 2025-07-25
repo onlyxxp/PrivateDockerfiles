@@ -8,20 +8,28 @@
           "settings":{"method":"aes-128-gcm","password":"805c30ba-4261-42f9-bec0-2e83adebe3e5"},
           "streamSettings":{"network":"tcp"}
       },
-       { // VLLLESS + WebSocket
-            "listen": "0.0.0.0",
-            "port": 1040,
-            "protocol": "vless",
-            "settings": {"clients":[{"id":"805c30ba-4261-42f9-bec0-2e83adebe3e5","level":1,"alterId":0}],"decryption":"none"},
-            "streamSettings": {"network":"ws"},
-            "sniffing":{"enabled":true,"destOverride":["http","tls"]}
-       },
        { // Vmess + WebSocket 
             "listen": "0.0.0.0",
             "port": 1050,            
             "protocol": "vmess",        
             "settings":{"clients":[{"id":"805c30ba-4261-42f9-bec0-2e83adebe3e5","level":1,"alterId":0}],"decryption":"none"},
             "streamSettings": {"network":"ws"},
+            "sniffing":{"enabled":true,"destOverride":["http","tls"]}
+       },
+       { // Vmess + hysteria2 
+            "listen": "0.0.0.0",
+            "port": 1060,            
+            "protocol": "vmess",        
+            "settings":{"clients":[{"id":"805c30ba-4261-42f9-bec0-2e83adebe3e5","level":1,"alterId":0}],"decryption":"none"},
+            "streamSettings": {"transport":"hysteria2","transportSettings":{"congestion":{"type":"bbr"},"password":"7asldfja123xxa","use_udp_extension":true}},
+            "sniffing":{"enabled":true,"destOverride":["http","tls"]}
+       },
+       { // hysteria2 + hysteria2 
+            "listen": "0.0.0.0",
+            "port": 1070,            
+            "protocol": "hysteria2",        
+            "settings":{"clients":[{"id":"805c30ba-4261-42f9-bec0-2e83adebe3e5","level":1,"alterId":0}],"decryption":"none"},
+            "streamSettings": {"transport":"hysteria2","transportSettings":{"congestion":{"type":"bbr"},"password":"7asldfja123xxa","use_udp_extension":true}},
             "sniffing":{"enabled":true,"destOverride":["http","tls"]}
        },
     ],
