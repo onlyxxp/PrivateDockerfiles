@@ -24,7 +24,7 @@ ssserver  -c /etc/conf/ss_2022.json&
 
 #tuic 
 echo -e  "\033[32m  run tuic-v5 \033[0m"
-tuic -c /etc/tuic/tuic_config.toml&
+tuic -c /etc/conf/tuic_config.toml&
 
 
 # 初始化snell v4 config
@@ -32,11 +32,11 @@ tuic -c /etc/tuic/tuic_config.toml&
 echo "[snell-server]
 listen = 0.0.0.0:$SNELL_LISTEN
 psk = $PSK
-ipv6 = false" > /etc/snell/snell-server.conf
-cat /etc/snell/snell-server.conf
+ipv6 = false" > /etc/snell/snell-serverv4.conf
+cat /etc/snell/snell-serverv4.conf
 echo -e  "\033[32m  run snell v4 \033[0m"
 # snell v4
-snell-server --loglevel=info -c /etc/snell/snell-server.conf&
+snell-server --loglevel=info -c /etc/snell/snell-serverv4.conf&
 
 
 
