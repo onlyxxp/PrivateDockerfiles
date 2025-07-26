@@ -20,7 +20,7 @@ RUN wget  -O /usr/tmp/bin/shadow-tls https://github.com/ihciah/shadow-tls/releas
 #tuic-v5
 RUN TAG=$(wget -qO- https://api.github.com/repos/Itsusinn/tuic/releases/latest | grep tag_name | cut -d '"' -f4) && \
     wget -O /usr/tmp/bin/tuic https://github.com/Itsusinn/tuic/releases/download/$TAG/tuic-server-x86_64-linux
-#RUN wget  -O /usr/tmp/bin/tuic https://github.com/etjec4/tuic/releases/download/tuic-server-1.0.0/tuic-server-1.0.0-x86_64-unknown-linux-gnu && chmod +x /usr/tmp/bin/tuic
+#RUN wget  -O /usr/tmp/bin/tuic https://github.com/etjec4/tuic/releases/download/tuic-server-1.0.0/tuic-server-1.0.0-x86_64-unknown-linux-gnu 
 
 ##v2ray    https://github.com/v2fly/v2ray-core/releases
 RUN cd /tmp && \
