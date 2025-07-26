@@ -1,0 +1,7 @@
+{
+    "server": "::",
+    "server_port": 1030,
+    "password": "805c30ba-4261-42f9-bec0-2e83adebe3e5",
+    "method": "aes-128-gcm",
+    "fast_open": true
+}
