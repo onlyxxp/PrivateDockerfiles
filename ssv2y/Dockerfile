@@ -5,7 +5,7 @@ COPY --from=xx / /
 
 # export TARGETPLATFORM (or other TARGET*)
 ARG TARGETPLATFORM
-ARG VERSION=2.4.4
+ARG VERSION=2.4.5.1
 
 RUN set -x &&  xx-info env && apk add --no-cache xz  && mkdir -p /usr/tmp/bin
 
@@ -25,7 +25,7 @@ RUN TAG=$(wget -qO- https://api.github.com/repos/Itsusinn/tuic/releases/latest |
 ##v2ray    https://github.com/v2fly/v2ray-core/releases
 RUN cd /tmp && \
     TAG=$(wget -qO- https://api.github.com/repos/v2fly/v2ray-core/releases/latest | grep tag_name | cut -d '"' -f4) && \
-    wget -O v2ray.zip https://github.com/v2fly/v2ray-core/releases/download/$TAG/v2ray-linux-64.zip && unzip v2ray.zip && \
+    wget -O v2ray.zip https://github.com/v2fly/v2ray-core/releases/download/v5.26.0/v2ray-linux-64.zip && unzip v2ray.zip && \
     chmod +x v2ray && mv v2ray /usr/tmp/bin && mkdir -p /etc/v2ray/ && mv config.json /etc/v2ray/  && /usr/tmp/bin/v2ray version 
    # && mv *.dat /usr/tmp/bin/
 
