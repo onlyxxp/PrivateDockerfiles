@@ -43,11 +43,7 @@ RUN apk add --no-cache tzdata && echo "Asia/Shanghai" > /etc/timezone && ln -sf 
 
 COPY --from=builder /usr/tmp/bin/*     /usr/bin/
 
-COPY snell-server.conf /etc/snell/
-COPY tuic_config.toml  /etc/tuic/
-COPY *.json /etc/conf/ 
-COPY ca.crt  /etc/tuic/
-COPY ca.key  /etc/tuic/
+COPY * /etc/conf/ 
 COPY entrypoint.sh  /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 
