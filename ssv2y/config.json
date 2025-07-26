@@ -8,14 +8,21 @@
           "settings":{"method":"aes-128-gcm","password":"805c30ba-4261-42f9-bec0-2e83adebe3e5"},
           "streamSettings":{"network":"tcp"}
       },
-      { // Vmess + WebSocket 
+      { // Vmess +  tcp
+            "listen": "0.0.0.0",
+            "port": 1040,            
+            "protocol": "vmess",        
+            "settings":{"clients":[{"id":"805c30ba-4261-42f9-bec0-2e83adebe3e5"}]},
+            "streamSettings": {"network":"tcp"}
+       }
+      { // Vmess + tcp + tls 
             "listen": "0.0.0.0",
             "port": 1050,            
             "protocol": "vmess",        
-            "settings":{"clients":[{"id":"805c30ba-4261-42f9-bec0-2e83adebe3e5","alterId":0}]},
+            "settings":{"clients":[{"id":"805c30ba-4261-42f9-bec0-2e83adebe3e5"}]},
             "streamSettings": {"network":"tcp"},
             "security": "tls",
-            "tlsSettings":{"certificates":[{"certificateFile":"/etc/tuic/ca.crt","keyFile":"/etc/tuic/ca.key"}]}
+            "tlsSettings":{"allowInsecure" : true}
        }
     ],
     "outbounds": [{"protocol":"freedom","tag":"direct"},{"protocol":"blackhole","tag":"block"}],
