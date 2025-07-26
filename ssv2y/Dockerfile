@@ -5,7 +5,7 @@ COPY --from=xx / /
 
 # export TARGETPLATFORM (or other TARGET*)
 ARG TARGETPLATFORM
-ARG VERSION=2.4.1
+ARG VERSION=2.4.2
 
 RUN set -x &&  xx-info env && apk add --no-cache xz  && mkdir -p /usr/tmp/bin
 
@@ -44,7 +44,7 @@ COPY --from=builder /usr/tmp/bin/*     /usr/bin/
 COPY --from=builder /etc/v2ray/        /etc/v2ray/
 
 COPY snell-server.conf /etc/snell/
-COPY tuic_config.json  /etc/tuic/
+COPY tuic_config.toml  /etc/tuic/
 COPY ca.crt  /etc/tuic/
 COPY ca.key  /etc/tuic/
 COPY config.json       /etc/v2ray/
