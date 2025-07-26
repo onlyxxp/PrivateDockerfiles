@@ -1,0 +1,10 @@
+{
+    "server": "::",
+    "server_port": 1040,
+    "password": "ojGdte+GHxKzhSiowvmNkg==",
+    "method": "2022-blake3-aes-128-gcm",
+    "fast_open": true,
+    "mode": "tcp_and_udp",
+    "user": "nobody",
+    "timeout": 300
+}
