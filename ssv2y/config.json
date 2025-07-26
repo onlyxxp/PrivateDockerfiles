@@ -12,7 +12,7 @@
             "listen": "0.0.0.0",
             "port": 1050,            
             "protocol": "vmess",        
-            "settings":{"clients":[{"id":"805c30ba-4261-42f9-bec0-2e83adebe3e5","level":1,"alterId":0}],"decryption":"none"},
+            "settings":{"clients":[{"id":"805c30ba-4261-42f9-bec0-2e83adebe3e5","alterId":0}]},
             "streamSettings": {"network":"tcp"},
             "security": "tls",
             "tlsSettings":{"certificates":[{"certificateFile":"/etc/tuic/ca.crt","keyFile":"/etc/tuic/ca.key"}]}
