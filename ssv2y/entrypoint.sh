@@ -21,7 +21,7 @@ v2ray run -c /etc/v2ray/config.json&
 
 #tuic 
 echo -e  "\033[32m  run tuic-v5 \033[0m"
-tuic -c /etc/tuic/config.json&
+tuic -c /etc/tuic/tuic_config.json&
 
 
 # 初始化snell v4 config
