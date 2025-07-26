@@ -5,7 +5,7 @@ COPY --from=xx / /
 
 # export TARGETPLATFORM (or other TARGET*)
 ARG TARGETPLATFORM
-ARG VERSION=2.4.5.8
+ARG VERSION=2.5.0.1
 
 RUN set -x &&  xx-info env && apk add --no-cache xz  && mkdir -p /usr/tmp/bin
 
@@ -23,11 +23,11 @@ RUN TAG=$(wget -qO- https://api.github.com/repos/Itsusinn/tuic/releases/latest |
 #RUN wget  -O /usr/tmp/bin/tuic https://github.com/etjec4/tuic/releases/download/tuic-server-1.0.0/tuic-server-1.0.0-x86_64-unknown-linux-gnu 
 
 ##v2ray    https://github.com/v2fly/v2ray-core/releases
-RUN cd /tmp && \
-    TAG=$(wget -qO- https://api.github.com/repos/v2fly/v2ray-core/releases/latest | grep tag_name | cut -d '"' -f4) && \
-    wget -O v2ray.zip https://github.com/v2fly/v2ray-core/releases/download/v5.26.0/v2ray-linux-64.zip && unzip v2ray.zip && \
-    chmod +x v2ray && mv v2ray /usr/tmp/bin && mkdir -p /etc/v2ray/ && mv config.json /etc/v2ray/  && /usr/tmp/bin/v2ray version 
-   # && mv *.dat /usr/tmp/bin/
+#RUN cd /tmp && \
+#    TAG=$(wget -qO- https://api.github.com/repos/v2fly/v2ray-core/releases/latest | grep tag_name | cut -d '"' -f4) && \
+#    wget -O v2ray.zip https://github.com/v2fly/v2ray-core/releases/download/v5.26.0/v2ray-linux-64.zip && unzip v2ray.zip && \
+#    chmod +x v2ray && mv v2ray /usr/tmp/bin && mkdir -p /etc/v2ray/ && mv config.json /etc/v2ray/  && /usr/tmp/bin/v2ray version 
+#   # && mv *.dat /usr/tmp/bin/
 
 
 
@@ -41,18 +41,18 @@ RUN apk add --update --no-cache libstdc++ curl && mkdir -p /etc/v2ray/  && mkdir
 RUN apk add --no-cache tzdata && echo "Asia/Shanghai" > /etc/timezone && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime 
 
 COPY --from=builder /usr/tmp/bin/*     /usr/bin/
-COPY --from=builder /etc/v2ray/        /etc/v2ray/
+#COPY --from=builder /etc/v2ray/        /etc/v2ray/
 
 COPY snell-server.conf /etc/snell/
 COPY tuic_config.toml  /etc/tuic/
 COPY ca.crt  /etc/tuic/
 COPY ca.key  /etc/tuic/
-COPY config.json       /etc/v2ray/
+#COPY config.json       /etc/v2ray/
 COPY entrypoint.sh  /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 
 # dry run
-RUN set -x && ls -l /usr/bin/snell-server && snell-server --help  && snell-server3 --help  && v2ray version   && tuic -version
+RUN set -x && ls -l /usr/bin/snell-server && snell-server --help  && snell-server3 --help   && tuic -version
 
 # 添加默认环境变量
 ENV PSK=uYQwNqZbaIOMiZ6Zni8v5x0M09Y8bSK SNELL_LISTEN=9000  SNELL_LISTEN_V3=9001
