@@ -14,20 +14,6 @@
 	        "protocol": "vmess",
 	        "settings": {"clients":[{"id":"b831381d-6324-4d53-ad4f-8cda48b30811","alterId":0, "security": "auto"}]},
 	        "streamSettings": {"network": "ws","wsSettings":{"path":"/hahai"}}
-       },
-       { // Vmess + mKCP 
-            "listen": "0.0.0.0",
-            "port": 1060,            
-            "protocol": "vmess",        
-            "settings":{"clients":[{"id":"805c30ba-4261-42f9-bec0-2e83adebe3e5","level":1,"alterId":0}],"decryption":"none"},
-            "streamSettings": {"network":"kcp"}
-       },
-       { // hysteria2 + hysteria2 
-            "listen": "0.0.0.0",
-            "port": 1070,            
-            "protocol": "hysteria2",        
-            "settings":{},
-            "streamSettings": {"transport":"hysteria2","transportSettings":{"congestion":{"type":"bbr"},"password":"7asldfja123xxa","use_udp_extension":true}}
        }
     ],
     "outbounds": [{"protocol":"freedom","tag":"direct"},{"protocol":"blackhole","tag":"block"}],
