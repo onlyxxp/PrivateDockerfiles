@@ -32,11 +32,11 @@ tuic -c /etc/conf/tuic_config.toml&
 echo "[snell-server]
 listen = 0.0.0.0:$SNELL_LISTEN
 psk = $PSK
-ipv6 = false" > /etc/snell/snell-serverv4.conf
-cat /etc/snell/snell-serverv4.conf
+ipv6 = false" > /etc/conf/snell-serverv4.conf
+cat /etc/conf/snell-serverv4.conf
 echo -e  "\033[32m  run snell v4 \033[0m"
 # snell v4
-snell-server --loglevel=info -c /etc/snell/snell-serverv4.conf&
+snell-server --loglevel=info -c /etc/conf/snell-serverv4.conf&
 
 
 
@@ -45,11 +45,11 @@ snell-server --loglevel=info -c /etc/snell/snell-serverv4.conf&
 echo "[snell-server]
 listen = 0.0.0.0:$SNELL_LISTEN_V3
 psk = $PSK
-ipv6 = false" > /etc/snell/snell-serverv3.conf
-cat /etc/snell/snell-serverv3.conf
+ipv6 = false" > /etc/conf/snell-serverv3.conf
+cat /etc/conf/snell-serverv3.conf
 echo -e  "\033[32m  run snell v3 \033[0m"
 # snell v3
-snell-server3 --loglevel=info -c /etc/snell/snell-serverv3.conf
+snell-server3 --loglevel=info -c /etc/conf/snell-serverv3.conf
 
 
 
