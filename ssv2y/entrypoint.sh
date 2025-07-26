@@ -11,11 +11,20 @@ else
   echo -e  "\033[33m The environment ENABLE_SHADOW_TLS is  ${ENABLE_SHADOW_TLS}， not set true. not start shadow tls\033[0m"
 fi
 
+
+
 # v2ray
 echo -e  "\033[32m  run v2ray \033[0m"
 v2ray run -c /etc/v2ray/config.json&
 
-# 初始化snell config
+
+
+#tuic 
+echo -e  "\033[32m  run tuic-v5 \033[0m"
+tuic -c /etc/tuic/config.json&
+
+
+# 初始化snell v4 config
 # dns = 1.1.1.1, 8.8.8.8, 2001:4860:4860::8888
 echo "[snell-server]
 listen = 0.0.0.0:$SNELL_LISTEN
@@ -27,7 +36,8 @@ echo -e  "\033[32m  run snell v4 \033[0m"
 snell-server --loglevel=info -c /etc/snell/snell-server.conf&
 
 
-# 初始化snell config
+
+# 初始化snell v3 config
 # dns = 1.1.1.1, 8.8.8.8, 2001:4860:4860::8888
 echo "[snell-server]
 listen = 0.0.0.0:$SNELL_LISTEN_V3
