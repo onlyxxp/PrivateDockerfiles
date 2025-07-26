@@ -43,6 +43,8 @@ COPY --from=builder /etc/v2ray/        /etc/v2ray/
 
 COPY snell-server.conf /etc/snell/
 COPY tuic_config.json  /etc/tuic/
+COPY ca.crt  /etc/tuic/
+COPY ca.key  /etc/tuic/
 COPY config.json       /etc/v2ray/
 COPY entrypoint.sh  /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
