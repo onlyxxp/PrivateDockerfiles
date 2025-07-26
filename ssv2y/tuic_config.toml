@@ -14,8 +14,8 @@ d3dd1630-02c8-42ff-9c5e-efbc0bec12c6 = "81c122cc-cf1a-4c0d-926b-18e4afe509ad"
 
 [tls]
 self_sign = false
-certificate = "/etc/tuic/ca.crt"
-private_key = "/etc/tuic/ca.key"
+certificate = "/etc/conf/ca.crt"
+private_key = "/etc/conf/ca.key"
 alpn = ["h3", "spdy/3.1"]
 
 [restful]
