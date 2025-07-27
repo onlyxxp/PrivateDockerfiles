@@ -1,10 +1,21 @@
 {
-    "server": "::",
-    "server_port": 1040,
-    "password": "ojGdte+GHxKzhSiowvmNkg==",
-    "method": "2022-blake3-aes-128-gcm",
-    "fast_open": true,
-    "mode": "tcp_and_udp",
-    "user": "nobody",
-    "timeout": 300
+	"servers": [
+		{
+			"server": "::",
+			"server_port": 1030,
+			"password": "805c30ba-4261-42f9-bec0-2e83adebe3e5",
+			"method": "aes-128-gcm",
+			"fast_open": true
+		},
+		{
+			"server": "::",
+			"server_port": 1040,
+			"password": "ojGdte+GHxKzhSiowvmNkg==",
+			"method": "2022-blake3-aes-128-gcm",
+			"fast_open": true,
+			"mode": "tcp_and_udp",
+			"user": "nobody",
+			"timeout": 300
+		}
+	]
 }
