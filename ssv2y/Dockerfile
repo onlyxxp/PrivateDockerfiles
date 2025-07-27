@@ -25,9 +25,9 @@ RUN TAG=$(wget -qO- https://api.github.com/repos/Itsusinn/tuic/releases/latest |
 
 #shadowsocket   v1.23.5
 RUN cd /tmp && \
-#    TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/shadowsocks-rust/releases | grep tag_name | cut -d '"' -f4) && \
-#    wget -O ss.tar.xz https://github.com/shadowsocks/shadowsocks-rust/releases/download/$TAG/shadowsocks-$TAG.x86_64-unknown-linux-musl.tar.xz && tar -xf ss.tar.xz && \
-    wget -O ss.tar.xz https://github.com/shadowsocks/shadowsocks-rust/releases/download/v1.23.5/shadowsocks-v1.23.5.x86_64-unknown-linux-musl.tar.xz && \
+TAG=$(wget -qO- https://api.github.com/repos/shadowsocks/shadowsocks-rust/releases/latest | grep tag_name | cut -d '"' -f4) && \
+    wget -O ss.tar.xz https://github.com/shadowsocks/shadowsocks-rust/releases/download/$TAG/shadowsocks-$TAG.x86_64-unknown-linux-musl.tar.xz && tar -xf ss.tar.xz && \
+#    wget -O ss.tar.xz https://github.com/shadowsocks/shadowsocks-rust/releases/download/v1.23.5/shadowsocks-v1.23.5.x86_64-unknown-linux-musl.tar.xz && \
     chmod +x ssserver && mv ssserver /usr/tmp/bin && mkdir -p /etc/ss/ 
    # && mv *.dat /usr/tmp/bin/
 
