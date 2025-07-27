@@ -12,11 +12,6 @@ else
 fi
 
 
-
-# ss-old
-echo -e  "\033[32m  run ss-old \033[0m"
-ssserver  -c /etc/conf/ss_old.json&
-
 # ss-2022
 echo -e  "\033[32m  run ss-2022 \033[0m"
 ssserver  -c /etc/conf/ss_2022.json&
