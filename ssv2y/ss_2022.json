@@ -17,5 +17,12 @@
 			"user": "nobody",
 			"timeout": 300
 		}
-	]
+	],
+	"log": {
+		"level": 1
+	},
+	"runtime": {
+		"mode": "multi_thread",
+		"worker_count": 10
+	}
 }
