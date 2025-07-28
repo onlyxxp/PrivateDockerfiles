@@ -15,7 +15,11 @@
 			"fast_open": true,
 			"mode": "tcp_and_udp",
 			"user": "nobody",
-			"timeout": 300
+			"plugin": "v2ray-plugin",
+			"plugin_opts": "mode=quic;host=apple.com",
+			"plugin_args": [
+				"--verbose"
+			]
 		}
 	],
 	"log": {
