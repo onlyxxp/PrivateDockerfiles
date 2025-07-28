@@ -14,12 +14,7 @@
 			"method": "2022-blake3-aes-128-gcm",
 			"fast_open": true,
 			"mode": "tcp_and_udp",
-			"user": "nobody",
-			"plugin": "v2ray-plugin",
-			"plugin_opts": "mode=quic;host=apple.com",
-			"plugin_args": [
-				"--verbose"
-			]
+			"user": "nobody"
 		}
 	],
 	"log": {
