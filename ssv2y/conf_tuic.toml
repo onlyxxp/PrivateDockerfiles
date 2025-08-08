@@ -1,4 +1,4 @@
-log_level = "info"
+log_level = "warn"
 server = "[::]:2020"
 udp_relay_ipv6 = true
 zero_rtt_handshake = false
