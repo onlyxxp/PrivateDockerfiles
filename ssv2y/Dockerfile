@@ -5,7 +5,7 @@ COPY --from=xx / /
 
 # export TARGETPLATFORM (or other TARGET*)
 ARG TARGETPLATFORM
-ARG VERSION=2.5.6
+ARG VERSION=2.5.7
 
 
 RUN set -x &&  xx-info env && apk add --no-cache xz tar && mkdir -p /usr/tmp/bin
@@ -13,8 +13,8 @@ RUN set -x &&  xx-info env && apk add --no-cache xz tar && mkdir -p /usr/tmp/bin
 #snell v3
 ENV SNELL_URL_V3=https://raw.githubusercontent.com/xOS/Others/master/snell/v3.0.1/snell-server-v3.0.1-linux-amd64.zip
 RUN wget --no-check-certificate -O snell-serverv3.zip $SNELL_URL_V3 && unzip snell-serverv3.zip && 	rm -f snell-serverv3.zip && 	chmod +x snell-server  && mv snell-server /usr/tmp/bin/snell-server3
-#snell v4  https://manual.nssurge.com/others/snell.html
-ENV SNELL_URL=https://dl.nssurge.com/snell/snell-server-v5.0.0-linux-amd64.zip
+#snell v5  https://kb.nssurge.com/surge-knowledge-base/release-notes/snell
+ENV SNELL_URL=https://dl.nssurge.com/snell/snell-server-v5.0.1-linux-amd64.zip
 RUN wget --no-check-certificate -O snell-server.zip $SNELL_URL && unzip snell-server.zip && 	rm -f snell-server.zip && 	chmod +x snell-server  && mv snell-server /usr/tmp/bin/
 #shadow-tls
 RUN wget  -O /usr/tmp/bin/shadow-tls https://github.com/ihciah/shadow-tls/releases/latest/download/shadow-tls-x86_64-unknown-linux-musl && chmod +x /usr/tmp/bin/shadow-tls
