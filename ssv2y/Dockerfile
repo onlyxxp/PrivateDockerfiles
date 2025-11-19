@@ -49,7 +49,7 @@ COPY entrypoint.sh  /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 
 # dry run
-RUN set -x && snell-server -v  && snell-server3 -v  && tuic -version  && ssserver -V
+RUN set -x && snell-server -v  && snell-server3 -v  && tuic --help  && ssserver -V
 
 # 添加默认环境变量
 ENV PSK=uYQwNqZbaIOMiZ6Zni8v5x0M09Y8bSK SNELL_LISTEN=9000  SNELL_LISTEN_V3=9001
