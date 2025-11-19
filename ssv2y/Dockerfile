@@ -5,7 +5,7 @@ COPY --from=xx / /
 
 # export TARGETPLATFORM (or other TARGET*)
 ARG TARGETPLATFORM
-ARG VERSION=2.5.5.1
+ARG VERSION=2.5.6
 
 
 RUN set -x &&  xx-info env && apk add --no-cache xz tar && mkdir -p /usr/tmp/bin
@@ -18,7 +18,7 @@ ENV SNELL_URL=https://dl.nssurge.com/snell/snell-server-v5.0.0-linux-amd64.zip
 RUN wget --no-check-certificate -O snell-server.zip $SNELL_URL && unzip snell-server.zip && 	rm -f snell-server.zip && 	chmod +x snell-server  && mv snell-server /usr/tmp/bin/
 #shadow-tls
 RUN wget  -O /usr/tmp/bin/shadow-tls https://github.com/ihciah/shadow-tls/releases/latest/download/shadow-tls-x86_64-unknown-linux-musl && chmod +x /usr/tmp/bin/shadow-tls
-#tuic-v5   5.0.0
+#tuic-v5   v1.6.5
 RUN TAG=$(wget -qO- https://api.github.com/repos/Itsusinn/tuic/releases/latest | grep tag_name | cut -d '"' -f4) && \
     wget -O /usr/tmp/bin/tuic https://github.com/Itsusinn/tuic/releases/download/$TAG/tuic-server-x86_64-linux  && chmod +x /usr/tmp/bin/tuic
 #RUN wget  -O /usr/tmp/bin/tuic https://github.com/etjec4/tuic/releases/download/tuic-server-1.0.0/tuic-server-1.0.0-x86_64-unknown-linux-gnu 
