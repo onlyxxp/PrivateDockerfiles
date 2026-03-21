@@ -33,5 +33,5 @@ receive_window = 8388608
 max_idle_time = "10s"
 
 [quic.congestion_control]
-controller = "bbr"
+controller = "bbr3"
 initial_window = 1048576
