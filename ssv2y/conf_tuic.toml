@@ -33,7 +33,7 @@ receive_window = 67108864
 max_idle_time = "60s"
 
 [quic.congestion_control]
-controller = "cubic"
+controller = "bbr3"
 initial_window = 8388608
 
 [outbound.default]
