@@ -28,13 +28,13 @@ initial_mtu = 1200
 min_mtu = 1200
 gso = true
 pmtu = true
-send_window = 16777216
-receive_window = 8388608
+send_window = 67108864
+receive_window = 67108864
 max_idle_time = "60s"
 
 [quic.congestion_control]
-controller = "bbr3"
-initial_window = 4194304
+controller = "cubic"
+initial_window = 8388608
 
 [outbound.default]
 type = "direct"
