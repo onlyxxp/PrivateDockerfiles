@@ -1,8 +1,8 @@
 log_level = "warn"
 server = "[::]:2020"
-udp_relay_ipv6 = true
+udp_relay_ipv6 = false
 zero_rtt_handshake = false
-dual_stack = true
+dual_stack = false
 auth_timeout = "3s"
 task_negotiation_timeout = "3s"
 gc_interval = "3s"
@@ -35,3 +35,7 @@ max_idle_time = "60s"
 [quic.congestion_control]
 controller = "bbr3"
 initial_window = 1048576
+
+[outbound.default]
+type = "direct"
+ip_mode = "v4only"
