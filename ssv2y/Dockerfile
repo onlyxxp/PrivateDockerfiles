@@ -27,7 +27,7 @@ RUN TAG=$(wget -qO- https://api.github.com/repos/Itsusinn/tuic/releases/latest |
 
 #AnyTls   v0.0.12
 RUN TAG=$(wget -qO- https://api.github.com/repos/anytls/anytls-go/releases/latest | grep tag_name | cut -d '"' -f4) && \
-    wget -O /usr/tmp/bin/tuic https://github.com/anytls-go/releases/releases/download/v$TAG/anytls_$TAG_linux_amd64.zip  && chmod +x /usr/tmp/bin/tuic
+    wget -O /usr/tmp/bin/anytls-server https://github.com/anytls-go/releases/releases/download/v$TAG/anytls_$TAG_linux_amd64.zip  && chmod +x /usr/tmp/bin/anytls-server
  
 
 
@@ -56,7 +56,7 @@ COPY entrypoint.sh  /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 
 # dry run
-RUN set -x && snell-server -v  && snell-server3 -v  && tuic -V  && ssserver -V
+RUN set -x && snell-server -v  && snell-server3 -v  && tuic -V  && ssserver -V   && anytls-server -v
 
 # 添加默认环境变量
 ENV PSK=uYQwNqZbaIOMiZ6Zni8v5x0M09Y8bSK SNELL_LISTEN=9000  SNELL_LISTEN_V3=9001
