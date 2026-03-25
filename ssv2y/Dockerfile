@@ -26,8 +26,8 @@ RUN TAG=$(wget -qO- https://api.github.com/repos/Itsusinn/tuic/releases/latest |
 
 
 #AnyTls   v0.0.12
-RUN TAG=$(wget -qO- https://api.github.com/repos/anytls/anytls-go/releases/latest | grep tag_name | cut -d '"' -f4) && \
-    wget -O /usr/tmp/bin/anytls-server https://github.com/anytls-go/releases/releases/download/v$TAG/anytls_$TAG_linux_amd64.zip  && chmod +x /usr/tmp/bin/anytls-server
+RUN wget -O /usr/tmp/bin/anytls-server https://github.com/anytls/anytls-go/releases/download/v0.0.12/anytls_0.0.12_linux_amd64.zip  && chmod +x /usr/tmp/bin/anytls-server
+       #wget -qO- https://api.github.com/repos/anytls/anytls-go/releases/latest | grep tag_name | cut -d '"' -f4) && \
  
 
 
