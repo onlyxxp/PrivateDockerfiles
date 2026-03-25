@@ -20,7 +20,7 @@ snell-server --loglevel=info -c /etc/conf/conf_snellv5.conf&
 
 # 初始化anytls
 echo -e  "\033[32m  run Anytls v5 \033[0m"
-anytls-server -l 0.0.0.0:34567 -p 123123&
+anytls-server -l 0.0.0.0:7007 -p oz1MIgN4RvPT0kGmnSSuCUEFcxpGOVh&
 
 
 # 初始化snell v3
